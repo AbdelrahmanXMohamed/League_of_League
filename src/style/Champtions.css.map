@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,WAAY;EACV,OAAO,EAAE,IAAI;EACb,SAAS,EAAE,IAAI",
+"sources": ["Champtions.scss"],
+"names": [],
+"file": "Champtions.css"
+}

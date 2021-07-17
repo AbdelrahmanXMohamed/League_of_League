@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAGA,eAAgB;EACd,MAAM,EAAE,SAAS;EACjB,+BAAgB;IACd,KAAK,EAAE,KAAK",
+"sources": ["ChamptionsCard.scss"],
+"names": [],
+"file": "ChamptionsCard.css"
+}
