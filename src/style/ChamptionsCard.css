@@ -1,6 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
 .ChamptionsCard {
   margin: 20px auto; }
-  .ChamptionsCard .ChampImage img {
-    width: 245px; }
+  .ChamptionsCard .ChampImage {
+    position: relative; }
+    .ChamptionsCard .ChampImage img {
+      width: 245px; }
+    .ChamptionsCard .ChampImage .caption {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      top: calc(29rem - 67px); }
+    .ChamptionsCard .ChampImage .caption:hover {
+      background-color: black; }
+    .ChamptionsCard .ChampImage p {
+      text-align: center;
+      font-family: "Roboto", sans-serif;
+      color: rgba(255, 255, 255, 0.5); }
+    .ChamptionsCard .ChampImage p:hover {
+      color: white; }
 
 /*# sourceMappingURL=ChamptionsCard.css.map */

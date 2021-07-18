@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/ChamptionsCard.css"
+import "../style/ChamptionsCard.css";
 const ChamptionsCard = ({ champ }) => {
   console.log(champ);
   return (
@@ -9,6 +9,9 @@ const ChamptionsCard = ({ champ }) => {
           src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ.id}_0.jpg`}
           alt={champ.name}
         />
+        <div className="caption">
+          <p>{champ.name}</p>
+        </div>
       </div>
     </div>
   );
