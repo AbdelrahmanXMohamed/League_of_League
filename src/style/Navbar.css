@@ -1,0 +1,18 @@
+.Navbar .pad {
+  padding: 13px;
+  display: flex; }
+.Navbar .root {
+  flex-grow: 1; }
+.Navbar .navColor {
+  background-color: #e4e4e4; }
+.Navbar .title {
+  flex-grow: 1;
+  margin-top: 7px; }
+.Navbar .links {
+  display: inline; }
+.Navbar .makeItColor {
+  color: black; }
+.Navbar .makeItColor:hover {
+  text-decoration: none; }
+
+/*# sourceMappingURL=Navbar.css.map */

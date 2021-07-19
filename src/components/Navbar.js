@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
 import {
   AppBar,
   Toolbar,
@@ -12,38 +12,22 @@ import {
   Menu,
   MenuItem,
   ListItemIcon,
+  ListItemText,
+  ListItem,
+  List,
+  SwipeableDrawer,
   CssBaseline,
+  Drawer,
 } from "@material-ui/core";
-/*import MenuIcon from "@material-ui/icons/Menu";
-import HomeIcon from "@material-ui/icons/Home";
+import MenuIcon from "@material-ui/icons/Menu";
+/*import HomeIcon from "@material-ui/icons/Home";
 import SchoolIcon from "@material-ui/icons/School";
 import PersonIcon from "@material-ui/icons/Person";
 import BookmarksIcon from "@material-ui/icons/Bookmarks";*/
 import { Link } from "react-router-dom";
 import Logo from "../image/Logo.png";
+import "../style/Navbar.css";
 //import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  navColor: { backgroundColor: "#e4580d" },
-  title: {
-    flexGrow: 1,
-    marginTop: "7px",
-  },
-  links: {
-    display: "inline",
-  },
-  makeItWhite: {
-    color: "white",
-    "&:hover": {
-      textDecoration: "none",
-    },
-  },
-}));
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -60,7 +44,6 @@ function HideOnScroll(props) {
 }
 
 const Navbar = (props) => {
-  const classes = useStyles();
   const [anchor, setAnchor] = React.useState(null);
   const open = Boolean(anchor);
   const theme = useTheme();
@@ -68,81 +51,86 @@ const Navbar = (props) => {
   const handleMenu = (event) => {
     setAnchor(event.currentTarget);
   };
+  const toggleDrawer = (open) => (event) => {
+    setAnchor(open);
+  };
+
   const preventDefault = (event) => event.preventDefault();
 
   return (
-    <>
+    <div className="Navbar">
       <CssBaseline />
       <HideOnScroll {...props}>
-        <div className={classes.root}>
-          <AppBar className={classes.navColor}>
+        <div className="root">
+          <AppBar className="navColor">
             <Toolbar>
-              <img src={Logo} alt="logo" width="65px" />
-              <div className={classes.title}>
-                {isMobile ? (
-                  <>
-                    <IconButton
-                      edge="start"
-                      className={classes.menuButton}
-                      color="inherit"
-                      aria-label="menu"
-                      onClick={handleMenu}
-                    ></IconButton>{" "}
-                    <Menu
-                      id="menu-appbar"
-                      anchorEl={anchor}
-                      anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                      }}
-                      KeepMounted
-                      transformOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                      }}
-                      open={open}
+              {isMobile ? (
+                <>
+                  <IconButton
+                    edge="start"
+                    className="menuButton"
+                    aria-label="menu"
+                    onClick={handleMenu}
+                  >
+                    <MenuIcon className="makeItColor root" />
+                  </IconButton>
+                  <Drawer
+                    anchor="top"
+                    variant="persistent"
+                    open={open}
+                    onClose={toggleDrawer(false)}
+                    onOpen={toggleDrawer(true)}
+                  >
+                    <div
+                      className="pad"
+                      onClick={toggleDrawer(false)}
+                      onKeyDown={toggleDrawer(false)}
                     >
-                      <MenuItem
-                        onClick={() => setAnchor(null)}
+                      <Button
+                        variant="text"
                         component={Link}
                         to="/"
+                        className="makeItColor root"
                       >
-                        <ListItemIcon></ListItemIcon>
-                        <Typography variant="h6"> Home</Typography>
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() => setAnchor(null)}
+                        Home
+                      </Button>
+                      <Button
+                        variant="text"
                         component={Link}
                         to="/champtions"
+                        className="makeItColor root"
                       >
-                        <ListItemIcon></ListItemIcon>
-                        <Typography variant="h6"> Champtions </Typography>
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() => setAnchor(null)}
+                        Champtions
+                      </Button>
+                      <Button
+                        variant="text"
                         component={Link}
                         to="/About"
+                        className="makeItColor root"
                       >
-                        <ListItemIcon></ListItemIcon>
-                        <Typography variant="h6"> About</Typography>
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() => setAnchor(null)}
+                        About
+                      </Button>
+                      <Button
+                        variant="text"
                         component={Link}
                         to="/Personal"
+                        className="makeItColor root"
                       >
-                        <ListItemIcon></ListItemIcon>
-                        <Typography variant="h6"> Personal </Typography>
-                      </MenuItem>
-                    </Menu>
-                  </>
-                ) : (
+                        Personal
+                      </Button>
+                    </div>
+                  </Drawer>
+                </>
+              ) : null}
+              <img src={Logo} alt="logo" width="65px" />
+              <div className="title">
+                {isMobile ? null : (
                   <>
                     <Button
                       variant="text"
                       component={Link}
                       to="/"
-                      className={classes.makeItWhite}
+                      className="makeItColor root"
                     >
                       Home
                     </Button>
@@ -150,7 +138,7 @@ const Navbar = (props) => {
                       variant="text"
                       component={Link}
                       to="/champtions"
-                      className={classes.makeItWhite}
+                      className="makeItColor root"
                     >
                       Champtions
                     </Button>
@@ -158,7 +146,7 @@ const Navbar = (props) => {
                       variant="text"
                       component={Link}
                       to="/About"
-                      className={classes.makeItWhite}
+                      className="makeItColor root"
                     >
                       About
                     </Button>
@@ -166,7 +154,7 @@ const Navbar = (props) => {
                       variant="text"
                       component={Link}
                       to="/Personal"
-                      className={classes.makeItWhite}
+                      className="makeItColor root"
                     >
                       Personal
                     </Button>
@@ -174,15 +162,64 @@ const Navbar = (props) => {
                 )}
               </div>
 
-              <Button color="inherit" component={Link} to="/Login">
+              <Button className="makeItColor" component={Link} to="/Login">
                 Login
               </Button>
             </Toolbar>
           </AppBar>
         </div>
       </HideOnScroll>
-    </>
+    </div>
   );
 };
 
 export default Navbar;
+/*
+  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchor}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    KeepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={open}
+                  >
+                    <MenuItem
+                      onClick={() => setAnchor(null)}
+                      component={Link}
+                      to="/"
+                    >
+                      <ListItemIcon></ListItemIcon>
+                      <Typography variant="h6"> Home</Typography>
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => setAnchor(null)}
+                      component={Link}
+                      to="/champtions"
+                    >
+                      <ListItemIcon></ListItemIcon>
+                      <Typography variant="h6"> Champtions </Typography>
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => setAnchor(null)}
+                      component={Link}
+                      to="/About"
+                    >
+                      <ListItemIcon></ListItemIcon>
+                      <Typography variant="h6"> About</Typography>
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => setAnchor(null)}
+                      component={Link}
+                      to="/Personal"
+                    >
+                      <ListItemIcon></ListItemIcon>
+                      <Typography variant="h6"> Personal </Typography>
+                    </MenuItem>
+                  </Menu>
+*/

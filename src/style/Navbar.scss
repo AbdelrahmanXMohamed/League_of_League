@@ -1,0 +1,32 @@
+.Navbar {
+  .appear {
+  }
+  .disapper {
+  }
+  .pad {
+    padding: 13px;
+    display: flex;
+  }
+  .root {
+    flex-grow: 1;
+  }
+  .menuButton {
+  }
+  .navColor {
+    background-color: #e4e4e4;
+  }
+  .title {
+    flex-grow: 1;
+    margin-top: 7px;
+  }
+  .links {
+    display: inline;
+  }
+  .makeItColor {
+    color: black;
+  }
+
+  .makeItColor:hover {
+    text-decoration: none;
+  }
+}
