@@ -1,0 +1,77 @@
+.Login {
+  display: grid;
+  height: 100vh;
+  place-items: center; }
+  .Login form {
+    padding: 10rem;
+    border: 10px solid #e95f0d;
+    text-align: center;
+    position: relative;
+    outline: 5px solid black;
+    border-radius: 5%; }
+    .Login form .handleImage {
+      position: absolute;
+      top: 0;
+      right: calc(calc(23.6rem + -3rem) / 2); }
+      .Login form .handleImage .Logo {
+        width: 14rem; }
+    .Login form .handleInput {
+      position: relative;
+      border: 2px solid #e95f0d;
+      border-radius: 30px;
+      margin-bottom: 10px; }
+      .Login form .handleInput svg {
+        position: absolute;
+        font-size: 15px;
+        top: 27%;
+        left: 3%; }
+      .Login form .handleInput .handleLogo {
+        padding-left: 25px; }
+      .Login form .handleInput input {
+        text-align: center;
+        padding-block: 8px;
+        border-radius: 20px;
+        border: 0px; }
+      .Login form .handleInput input:focus-visible {
+        outline: 0px; }
+      .Login form .handleInput ::placeholder {
+        color: #e95f0d;
+        text-align: center; }
+    .Login form input[type="submit"] {
+      width: 100%;
+      border: 2px solid #e95f0d;
+      padding: 10px;
+      border-radius: 30px;
+      font-family: Roboto;
+      font-weight: bold; }
+    .Login form input[type="submit"]:hover {
+      animation: glow 1s infinite;
+      animation-fill-mode: forwards; }
+@keyframes glow {
+  0% {
+    background-color: black;
+    color: white; }
+  50% {
+    background-color: gray;
+    color: black; }
+  100% {
+    background-color: black;
+    color: white; } }
+  @media (max-width: 560px) {
+    .Login form {
+      width: 1rem; }
+      .Login form .handleHeader {
+        position: relative;
+        right: 2rem; }
+      .Login form .handleImage {
+        left: 50px; }
+      .Login form .handleInput {
+        right: 7rem;
+        width: 15rem; }
+      .Login form .handleSubmit {
+        position: absolute;
+        left: 3rem; }
+      .Login form input[type="submit"] {
+        width: 15rem; } }
+
+/*# sourceMappingURL=Login.css.map */

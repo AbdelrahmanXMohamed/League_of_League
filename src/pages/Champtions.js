@@ -17,7 +17,6 @@ const Champtions = () => {
   }, []);
   return (
     <>
-      <h1>Champtions Page</h1>
       {!champtions ? (
         <Loading />
       ) : (

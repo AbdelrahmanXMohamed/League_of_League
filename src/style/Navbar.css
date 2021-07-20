@@ -1,18 +1,46 @@
-.Navbar .pad {
-  padding: 13px;
-  display: flex; }
-.Navbar .root {
-  flex-grow: 1; }
-.Navbar .navColor {
-  background-color: #e4e4e4; }
-.Navbar .title {
-  flex-grow: 1;
-  margin-top: 7px; }
-.Navbar .links {
-  display: inline; }
-.Navbar .makeItColor {
-  color: black; }
-.Navbar .makeItColor:hover {
-  text-decoration: none; }
+.Navbar {
+  margin-bottom: 65px; }
+  .Navbar .mobNav {
+    display: block;
+    background: #e95f0d;
+    animation: down 1s;
+    margin-top: 3rem; }
+    .Navbar .mobNav .makeItColor {
+      color: #f4f4f4; }
+  .Navbar .mobNavBack {
+    animation: back 1s; }
+    .Navbar .mobNavBack .makeItColor {
+      color: #f4f4f4; }
+  .Navbar .pad {
+    padding: 13px;
+    display: flex; }
+  .Navbar .root {
+    flex-grow: 1; }
+  .Navbar .navColor {
+    background-color: #e4e4e4; }
+  .Navbar .title {
+    flex-grow: 1;
+    margin-top: 7px; }
+  .Navbar .links {
+    display: inline; }
+  .Navbar .makeItColor {
+    color: black; }
+  .Navbar .makeItColor:hover {
+    text-decoration: none; }
+  .Navbar .MuiToolbar-regular {
+    min-height: 56px; }
+
+@keyframes down {
+  0% {
+    margin-top: 1rem; }
+  100% {
+    margin-top: 3rem; } }
+@keyframes back {
+  0% {
+    margin-top: 3rem;
+    background: #e95f0d; }
+  100% {
+    margin-top: 0rem;
+    display: hidden; } }
 
 /*# sourceMappingURL=Navbar.css.map */

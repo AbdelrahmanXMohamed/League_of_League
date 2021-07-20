@@ -27,3 +27,15 @@
     }
   }
 }
+@media (max-width: 1024px) {
+  .ChamptionsCard {
+    .ChampImage {
+      img {
+        width: calc(29rem - 21em);
+      }
+      .caption {
+        top: calc(29rem - 14.5em);
+      }
+    }
+  }
+}

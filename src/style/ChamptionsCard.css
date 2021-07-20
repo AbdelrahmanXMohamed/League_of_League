@@ -21,4 +21,10 @@
     .ChamptionsCard .ChampImage p:hover {
       color: white; }
 
+@media (max-width: 1024px) {
+  .ChamptionsCard .ChampImage img {
+    width: calc(29rem - 21em); }
+  .ChamptionsCard .ChampImage .caption {
+    top: calc(29rem - 14.5em); } }
+
 /*# sourceMappingURL=ChamptionsCard.css.map */

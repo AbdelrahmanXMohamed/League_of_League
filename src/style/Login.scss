@@ -1,0 +1,101 @@
+@import "./var.scss";
+
+.Login {
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  form {
+    padding: 10rem;
+    border: 10px solid $CommonColor1;
+    text-align: center;
+    position: relative;
+    outline: 5px solid $CommonColor3;
+    border-radius: 5%;
+    .handleImage {
+      position: absolute;
+      top: 0;
+      right: calc(calc(23.6rem + -3rem) / 2);
+      .Logo {
+        width: 14rem;
+      }
+    }
+    .handleInput {
+      position: relative;
+      border: 2px solid $CommonColor1;
+      border-radius: 30px;
+      margin-bottom: 10px;
+      svg {
+        position: absolute;
+        font-size: 15px;
+        top: 27%;
+        left: 3%;
+      }
+      .handleLogo {
+        padding-left: 25px;
+      }
+      input {
+        text-align: center;
+        padding-block: 8px;
+        border-radius: 20px;
+        border: 0px;
+      }
+      input:focus-visible {
+        outline: 0px;
+      }
+      ::placeholder {
+        color: $CommonColor1;
+        text-align: center;
+      }
+    }
+    input[type="submit"] {
+      width: 100%;
+      border: 2px solid $CommonColor1;
+      padding: 10px;
+      border-radius: 30px;
+      font-family: Roboto;
+      font-weight: bold;
+    }
+    input[type="submit"]:hover {
+      animation: glow 1s infinite;
+      animation-fill-mode: forwards;
+    }
+    @keyframes glow {
+      0% {
+        background-color: $CommonColor3;
+        color: white;
+      }
+      50% {
+        background-color: gray;
+        color: $CommonColor3;
+      }
+      100% {
+        background-color: $CommonColor3;
+        color: white;
+      }
+    }
+  }
+
+  @media (max-width: 560px) {
+    form {
+      width: 1rem;
+      .handleHeader {
+        position: relative;
+        right: 2rem;
+      }
+      .handleImage {
+        left: 50px;
+      }
+      .handleInput {
+        right: 7rem;
+        width: 15rem;
+      }
+      .handleSubmit {
+        position: absolute;
+        left: 3rem;
+      }
+      input[type="submit"] {
+        width: 15rem;
+      }
+    }
+  }
+}

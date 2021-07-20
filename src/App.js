@@ -9,7 +9,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import ForgetPassword from "./pages/ForgetPassword";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 function App() {
   return (

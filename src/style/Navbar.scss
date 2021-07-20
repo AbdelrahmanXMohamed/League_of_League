@@ -1,7 +1,24 @@
+@import "./var.scss";
 .Navbar {
+  margin-bottom: 65px;
   .appear {
   }
   .disapper {
+  }
+  .mobNav {
+    display: block;
+    background: $CommonColor1;
+    animation: down 1s;
+    margin-top: 3rem;
+    .makeItColor {
+      color: $CommonColor0;
+    }
+  }
+  .mobNavBack {
+    animation: back 1s;
+    .makeItColor {
+      color: $CommonColor0;
+    }
   }
   .pad {
     padding: 13px;
@@ -13,7 +30,7 @@
   .menuButton {
   }
   .navColor {
-    background-color: #e4e4e4;
+    background-color: $CommonColor4;
   }
   .title {
     flex-grow: 1;
@@ -22,11 +39,34 @@
   .links {
     display: inline;
   }
+
   .makeItColor {
-    color: black;
+    color: $CommonColor3;
   }
 
   .makeItColor:hover {
     text-decoration: none;
+  }
+  .MuiToolbar-regular {
+    min-height: 56px;
+  }
+}
+@keyframes down {
+  0% {
+    margin-top: 1rem;
+  }
+  100% {
+    margin-top: 3rem;
+  }
+}
+@keyframes back {
+  0% {
+    margin-top: 3rem;
+
+    background: $CommonColor1;
+  }
+  100% {
+    margin-top: 0rem;
+    display: hidden;
   }
 }
