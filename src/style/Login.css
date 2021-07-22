@@ -1,7 +1,8 @@
 .Login {
   display: grid;
   height: 100vh;
-  place-items: center; }
+  place-items: center;
+  animation: showing 1s; }
   .Login form {
     padding: 10rem;
     border: 10px solid #e95f0d;
@@ -9,6 +10,14 @@
     position: relative;
     outline: 5px solid black;
     border-radius: 5%; }
+    .Login form .fade {
+      animation: loginFadded 1s;
+      opacity: 0; }
+@keyframes loginFadded {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0.5; } }
     .Login form .handleImage {
       position: absolute;
       top: 0;
@@ -62,9 +71,11 @@
   @media (max-width: 560px) {
     .Login form {
       width: 1rem; }
-      .Login form .handleHeader {
+      .Login form .handleHeaderLogin, .Login form .handleHeaderRegister {
         position: relative;
         right: 2rem; }
+      .Login form .handleHeaderRegister {
+        right: 3rem; }
       .Login form .handleImage {
         left: 50px; }
       .Login form .handleInput {
@@ -79,5 +90,25 @@
         position: relative;
         top: 50px;
         right: 16px; } }
+@keyframes showing {
+  0% {
+    opacity: 0.5; }
+  100% {
+    opacity: 1; } }
+/*
+.LoginFade {
+  @extend .Login;
+  animation: loginFadded $fadeAnimationdurationLogin;
+  opacity: 0;
+}
+@keyframes loginFadded {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+*/
 
 /*# sourceMappingURL=Login.css.map */

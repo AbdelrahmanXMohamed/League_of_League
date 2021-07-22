@@ -13,11 +13,11 @@ const Champtions = () => {
       .then((data) => setChamptions(data.data));
   };
   useEffect(() => {
-    getData();
+    setTimeout(() => getData(), 0);
   }, []);
   return (
     <>
-      {!champtions ? (
+      {champtions.length === 0 ? (
         <Loading />
       ) : (
         <div className="Champtions">

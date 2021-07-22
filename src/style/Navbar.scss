@@ -25,13 +25,31 @@
     padding: 13px;
     display: flex;
   }
+  .padNone {
+    @extend .pad;
+    animation: removeNone 0.5s;
+    visibility: hidden;
+  }
+
+  @keyframes removeNone {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
   .root {
     flex-grow: 1;
+    position: relative;
+    z-index: 1;
   }
   .menuButton {
   }
   .navColor {
     background-color: $CommonColor4;
+    position: inherit;
+    margin-bottom: -46px;
   }
   .title {
     flex-grow: 1;
@@ -54,20 +72,24 @@
 }
 @keyframes down {
   0% {
+    opacity: 0;
     margin-top: 1rem;
   }
   100% {
+    opacity: 1;
     margin-top: 3rem;
   }
 }
 @keyframes back {
   0% {
+    opacity: 1;
     margin-top: 3rem;
 
     background: $CommonColor1;
   }
   100% {
+    opacity: 0;
     margin-top: 0rem;
-    display: hidden;
+    display: none;
   }
 }

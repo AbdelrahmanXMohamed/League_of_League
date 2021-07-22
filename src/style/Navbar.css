@@ -11,14 +11,26 @@
     animation: back 1s; }
     .Navbar .mobNavBack .makeItColor {
       color: #f4f4f4; }
-  .Navbar .pad {
+  .Navbar .pad, .Navbar .padNone {
     margin-bottom: -65px;
     padding: 13px;
     display: flex; }
+  .Navbar .padNone {
+    animation: removeNone 0.5s;
+    visibility: hidden; }
+@keyframes removeNone {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
   .Navbar .root {
-    flex-grow: 1; }
+    flex-grow: 1;
+    position: relative;
+    z-index: 1; }
   .Navbar .navColor {
-    background-color: #e4e4e4; }
+    background-color: #e4e4e4;
+    position: inherit;
+    margin-bottom: -46px; }
   .Navbar .title {
     flex-grow: 1;
     margin-top: 7px; }
@@ -33,15 +45,19 @@
 
 @keyframes down {
   0% {
+    opacity: 0;
     margin-top: 1rem; }
   100% {
+    opacity: 1;
     margin-top: 3rem; } }
 @keyframes back {
   0% {
+    opacity: 1;
     margin-top: 3rem;
     background: #e95f0d; }
   100% {
+    opacity: 0;
     margin-top: 0rem;
-    display: hidden; } }
+    display: none; } }
 
 /*# sourceMappingURL=Navbar.css.map */
