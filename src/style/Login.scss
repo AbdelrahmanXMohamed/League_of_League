@@ -59,6 +59,7 @@
       animation: glow 1s infinite;
       animation-fill-mode: forwards;
     }
+
     @keyframes glow {
       0% {
         background-color: $CommonColor3;
@@ -74,7 +75,9 @@
       }
     }
   }
-
+  .registerLink {
+    margin-top: 10px;
+  }
   @media (max-width: 560px) {
     form {
       width: 1rem;
@@ -95,6 +98,11 @@
       }
       input[type="submit"] {
         width: 15rem;
+      }
+      .registerLink {
+        position: relative;
+        top: 50px;
+        right: 16px;
       }
     }
   }

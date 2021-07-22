@@ -3,6 +3,7 @@ import "../style/Login.css";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Logo from "../image/Logo.png";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const email = useRef(null);
@@ -40,7 +41,10 @@ const Login = () => {
             </div>
           </div>
           <div className="handleSubmit">
-            <input type="submit" className="Submit" value="Click" />
+            <input type="submit" className="Submit" value="Login" />
+          </div>
+          <div className="registerLink">
+            <Link to="/register">Register</Link>
           </div>
         </form>
       </div>

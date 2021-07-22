@@ -12,6 +12,7 @@
     .Navbar .mobNavBack .makeItColor {
       color: #f4f4f4; }
   .Navbar .pad {
+    margin-bottom: -65px;
     padding: 13px;
     display: flex; }
   .Navbar .root {
