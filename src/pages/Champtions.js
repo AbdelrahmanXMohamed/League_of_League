@@ -6,11 +6,16 @@ import "../style/Champtions.css";
 const Champtions = () => {
   const [champtions, setChamptions] = useState([]);
   const getData = () => {
-    fetch(
-      "http://ddragon.leagueoflegends.com/cdn/11.14.1/data/en_US/champion.json"
-    )
+    fetch("https://ddragon.leagueoflegends.com/api/versions.json")
       .then((response) => response.json())
-      .then((data) => setChamptions(data.data));
+      .then((data) => data)
+      .then((data) =>
+        fetch(
+          `http://ddragon.leagueoflegends.com/cdn/${data[0]}/data/en_US/champion.json`
+        )
+          .then((response) => response.json())
+          .then((data) => setChamptions(data.data))
+      );
   };
   useEffect(() => {
     setTimeout(() => getData(), 0);

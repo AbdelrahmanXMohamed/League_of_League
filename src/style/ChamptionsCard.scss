@@ -2,10 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
-
+.ChamptionsCard {
+}
 .ChamptionsCard {
   display: inline-flex;
   margin: 10px auto;
+  animation: try 2s;
 
   .card {
     position: relative;
@@ -75,6 +77,14 @@
   }
 }
 
+@keyframes try {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 /*
 .ChamptionsCard {
   margin: 20px auto;
@@ -107,9 +117,11 @@
 @media (max-width: 1024px) {
   .ChamptionsCard {
     .card {
+      margin: 0px;
       img {
         width: calc(27rem - 21.6em);
       }
+
       figcaption {
         font-size: 1rem;
       }
