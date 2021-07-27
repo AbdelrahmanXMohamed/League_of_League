@@ -1,18 +1,15 @@
 import React from "react";
 import "../style/ChamptionsCard.css";
 const ChamptionsCard = ({ champ }) => {
-  console.log(champ);
   return (
     <div className="ChamptionsCard">
-      <div className="ChampImage">
+      <figure className="card">
         <img
           src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ.id}_0.jpg`}
           alt={champ.name}
         />
-        <div className="caption">
-          <p>{champ.name}</p>
-        </div>
-      </div>
+        <figcaption>{champ.name}</figcaption>
+      </figure>
     </div>
   );
 };

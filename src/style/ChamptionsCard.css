@@ -1,30 +1,93 @@
 @import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 .ChamptionsCard {
-  margin: 20px auto; }
-  .ChamptionsCard .ChampImage {
-    position: relative; }
-    .ChamptionsCard .ChampImage img {
-      width: 245px; }
-    .ChamptionsCard .ChampImage .caption {
+  display: inline-flex;
+  margin: 10px auto; }
+  .ChamptionsCard .card {
+    position: relative;
+    margin: 20px;
+    max-width: 250px;
+    max-height: 380px;
+    overflow: hidden;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+    transform-origin: center top;
+    transform-style: preserve-3d;
+    transform: translateZ(0);
+    transition: 0.3s; }
+    .ChamptionsCard .card:after {
+      position: absolute;
+      content: "";
+      z-index: 10;
+      width: 200%;
+      height: 100%;
+      top: -90%;
+      left: -20px;
+      opacity: 0.1;
+      transform: rotate(45deg);
+      background: linear-gradient(to top, transparent, #fff 15%, rgba(255, 255, 255, 0.5));
+      transition: 0.3s; }
+    .ChamptionsCard .card figcaption {
+      text-align: center;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      padding-bottom: 10px;
+      font-size: 20px;
+      background: rgba(0, 0, 0, 0.575);
+      color: rgba(255, 255, 255, 0.808);
+      transform: translateY(100%);
+      transition: 0.3s;
+      font-family: "Bebas Neue", cursive;
+      font-size: 2rem; }
+    .ChamptionsCard .card img {
+      width: 100%;
+      min-height: 100%; }
+    .ChamptionsCard .card:hover, .ChamptionsCard .card:focus, .ChamptionsCard .card:active {
+      box-shadow: 0 8px 16px 3px rgba(0, 0, 0, 0.6);
+      transform: translateY(-3px) scale(1.05) rotateX(15deg); }
+      .ChamptionsCard .card:hover figcaption, .ChamptionsCard .card:focus figcaption, .ChamptionsCard .card:active figcaption {
+        transform: none; }
+      .ChamptionsCard .card:hover:after, .ChamptionsCard .card:focus:after, .ChamptionsCard .card:active:after {
+        transform: rotate(25deg);
+        top: -40%;
+        opacity: 0.15; }
+
+/*
+.ChamptionsCard {
+  margin: 20px auto;
+  .ChampImage {
+    position: relative;
+    img {
+      width: 245px;
+    }
+    .caption {
       position: absolute;
       background-color: rgba(0, 0, 0, 0.5);
       width: 100%;
-      top: calc(29rem - 67px); }
-    .ChamptionsCard .ChampImage .caption:hover {
-      background-color: black; }
-    .ChamptionsCard .ChampImage p {
+      top: calc(29rem - 67px);
+    }
+    .caption:hover {
+      background-color: rgba(0, 0, 0, 1);
+    }
+    p {
       text-align: center;
       font-family: "Roboto", sans-serif;
-      color: rgba(255, 255, 255, 0.5); }
-    .ChamptionsCard .ChampImage p:hover {
-      color: white; }
-
+      color: rgba(255, 255, 255, 0.5);
+    }
+    p:hover {
+      color: white;
+    }
+  }
+}
+*/
 @media (max-width: 1024px) {
-  .ChamptionsCard .ChampImage img {
-    width: calc(29rem - 21em); }
-  .ChamptionsCard .ChampImage .caption {
-    top: calc(29rem - 14.5em); } }
+  .ChamptionsCard .card img {
+    width: calc(27rem - 21.6em); }
+  .ChamptionsCard .card figcaption {
+    font-size: 1rem; } }
 
 /*# sourceMappingURL=ChamptionsCard.css.map */
