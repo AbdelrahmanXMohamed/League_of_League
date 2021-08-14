@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import "../style/Login.css";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Logo from "../image/Logo.png";
+import Logo from "../resource/Logo.png";
 import { useHistory } from "react-router-dom";
 
 const Register = () => {
@@ -32,11 +32,11 @@ const Register = () => {
       <div className={"Login"}>
         <form onSubmit={handleSubmit}>
           <div className={faded ? "fade" : null}>
-            <div className="handleHeaderRegister">
-              <h1>Register</h1>
-            </div>
             <div className="handleImage">
               <img src={Logo} className="Logo" alt="logo" />
+            </div>
+            <div className="handleHeaderRegister">
+              <h1>Register</h1>
             </div>
             <div className="handleInput">
               <MailOutlineIcon />

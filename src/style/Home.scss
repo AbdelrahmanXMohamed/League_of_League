@@ -2,4 +2,62 @@
   display: grid;
   height: 100vh;
   place-items: center;
+} /*
+.backgroundVideo {
+  width: 100%;
+  position: relative;
+  top: -18px;
+  height: 50%;
+  video {
+    width: inherit;
+  }
+  .search {
+    position: absolute;
+    top: 26vw;
+    text-align: center;
+    width: 100vw;
+  }
+  input {
+    width: 50%;
+    padding: calc(2vw - 8px);
+    border-radius: 10vw;
+    border: 1px solid black;
+    background: rgba(255, 255, 255, 0.5);
+    font-size: calc(18px - 1vw);
+  }
+}*/
+.backgroundVideo {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: -16px;
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  .search {
+    //display: block;
+    margin: 50px auto;
+    width: 100vw;
+    height: 54px;
+    line-height: 54px;
+    text-align: center;
+    position: absolute;
+    top: calc(50vh - 65px);
+  }
+  select,
+  input {
+    width: 50%;
+    padding: calc(2vw - 8px);
+    border-radius: 10vw;
+    border: 1px solid black;
+    background: rgba(255, 255, 255, 0.5);
+    font-size: 18px;
+  }
 }

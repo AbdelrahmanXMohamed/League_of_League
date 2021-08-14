@@ -11,7 +11,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 
 import { Link } from "react-router-dom";
-import Logo from "../image/Logo.png";
+import Logo from "../resource/Logo.png";
 import "../style/Navbar.css";
 
 const Navbar = (props) => {

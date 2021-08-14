@@ -1,5 +1,5 @@
 .Navbar {
-  margin-bottom: 65px; }
+  margin-bottom: 48px; }
   .Navbar .mobNav {
     display: block;
     background: #e95f0d;
@@ -8,11 +8,12 @@
     .Navbar .mobNav .makeItColor {
       color: #f4f4f4; }
   .Navbar .mobNavBack {
-    animation: back 1s; }
+    animation: back 1s;
+    animation-fill-mode: forwards; }
     .Navbar .mobNavBack .makeItColor {
       color: #f4f4f4; }
   .Navbar .pad, .Navbar .padNone {
-    margin-bottom: -65px;
+    margin-bottom: -48px;
     padding: 13px;
     display: flex; }
   .Navbar .padNone {

@@ -1,6 +1,6 @@
 @import "./var.scss";
 .Navbar {
-  margin-bottom: 65px;
+  margin-bottom: 48px;
   .appear {
   }
   .disapper {
@@ -16,12 +16,13 @@
   }
   .mobNavBack {
     animation: back 1s;
+    animation-fill-mode: forwards;
     .makeItColor {
       color: $CommonColor0;
     }
   }
   .pad {
-    margin-bottom: -65px;
+    margin-bottom: -48px;
     padding: 13px;
     display: flex;
   }
