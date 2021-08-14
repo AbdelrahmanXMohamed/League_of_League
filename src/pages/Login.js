@@ -10,25 +10,31 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
   const [faded, setfaded] = useState(false);
+  const handleLogin = (email, password) => {
+    console.log("email : " + email);
+    console.log("password : " + password);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const email = email.current.value;
-    const password = password.current.value;
+    const emailData = email.current.value;
+    const passwordData = password.current.value;
+    handleLogin(emailData, passwordData);
   };
-  const redirect = () => {
+  const redirect = (e) => {
     setfaded(true);
-    setTimeout(() => history.push("/Register"), 500);
+    console.log(e.target.id);
+    setTimeout(() => history.push(`/${e.target.id}`), 500);
   };
   return (
     <>
       <div className={"Login"}>
         <form onSubmit={handleSubmit}>
           <div className={faded ? "fade" : null}>
-            <div className="handleHeaderLogin">
-              <h1>Login</h1>
-            </div>
             <div className="handleImage">
               <img src={Logo} className="Logo" alt="logo" />
+            </div>
+            <div className="handleHeaderLogin">
+              <h1>Login</h1>
             </div>
             <div className="handleInput">
               <MailOutlineIcon />
@@ -55,8 +61,13 @@ const Login = () => {
             <div className="handleSubmit">
               <input type="submit" className="Submit" value="Login" />
             </div>
-            <div className="registerLink">
-              <p onClick={redirect}>Register</p>
+            <div className="moreLinks">
+              <p id="Register" onClick={redirect}>
+                Register
+              </p>
+              <p id="ForgetPassword" onClick={redirect}>
+                Forget Password ?
+              </p>
             </div>
           </div>
         </form>

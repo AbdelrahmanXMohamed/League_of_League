@@ -11,11 +11,17 @@ const Register = () => {
   const password = useRef(null);
   const confirmpassword = useRef(null);
   const [faded, setfaded] = useState(false);
+  const handleRegister = (email, password, confirmPassword) => {
+    console.log("email : " + email);
+    console.log("password : " + password);
+    console.log("confirmPassword : " + confirmPassword);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const email = email.current.value;
-    const password = password.current.value;
-    const confirmPassword = confirmpassword.current.value;
+    const emailData = email.current.value;
+    const passwordData = password.current.value;
+    const confirmPasswordData = confirmpassword.current.value;
+    handleRegister(emailData, passwordData, confirmPasswordData);
   };
   const redirect = () => {
     setfaded(true);

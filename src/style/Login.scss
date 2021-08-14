@@ -9,9 +9,9 @@
     padding: 10rem;
     border: 10px solid $CommonColor1;
     text-align: center;
-    position: relative;
-    outline: 5px solid $CommonColor3;
-    border-radius: 5%;
+    //position: relative;
+    box-shadow: 0 30px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 60px;
     .fade {
       animation: loginFadded $fadeAnimationdurationLogin;
       opacity: 0;
@@ -25,9 +25,6 @@
       }
     }
     .handleImage {
-      position: absolute;
-      top: 0;
-      right: calc(calc(23.6rem + -3rem) / 2);
       .Logo {
         width: 14rem;
       }
@@ -90,39 +87,12 @@
     }
   }
 
-  .registerLink {
+  .moreLinks {
     margin-top: 10px;
   }
   @media (max-width: 560px) {
     form {
-      width: 1rem;
-      .handleHeaderLogin {
-        position: relative;
-        right: 2rem;
-      }
-      .handleHeaderRegister {
-        @extend .handleHeaderLogin;
-        right: 3rem;
-      }
-      .handleImage {
-        left: 50px;
-      }
-      .handleInput {
-        right: 7rem;
-        width: 15rem;
-      }
-      .handleSubmit {
-        position: absolute;
-        left: 3rem;
-      }
-      input[type="submit"] {
-        width: 15rem;
-      }
-      .registerLink {
-        position: relative;
-        top: 50px;
-        right: 16px;
-      }
+      padding: 3em;
     }
   }
   @keyframes showing {
