@@ -117,7 +117,7 @@ const Navbar = (props) => {
               <Button
                 variant="text"
                 component={Link}
-                to="/champtions"
+                to="/Champtions"
                 className="makeItColor root"
               >
                 Champtions

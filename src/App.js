@@ -9,7 +9,8 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import ForgetPassword from "./pages/ForgetPassword";
 
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { VersionProvider } from "./context/ContextChamption";
 
 function App() {
   return (
@@ -19,11 +20,15 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/Champtions">
-          <Champtions />
+        <Route exact path="/Champtions">
+          <VersionProvider>
+            <Champtions />
+          </VersionProvider>
         </Route>
-        <Route path="/Champtions/Profile">
-          <ChampProfile />
+        <Route path="/Champtions/Profile/:id">
+          <VersionProvider>
+            <ChampProfile />
+          </VersionProvider>
         </Route>
         <Route path="/Login">
           <Login />

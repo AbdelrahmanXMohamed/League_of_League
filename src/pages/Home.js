@@ -2,22 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../style/Home.css";
 import Video from "../resource/Arcane Animated Series Official Netflix Announcement.mp4";
 const Home = () => {
-  const [champtions, setChamptions] = useState([]);
-  const getData = () => {
-    fetch("https://ddragon.leagueoflegends.com/api/versions.json")
-      .then((response) => response.json())
-      .then((data) => data)
-      .then((data) =>
-        fetch(
-          `http://ddragon.leagueoflegends.com/cdn/${data[0]}/data/en_US/champion.json`
-        )
-          .then((response) => response.json())
-          .then((data) => setChamptions(data.data))
-      );
-  };
-  useEffect(() => {
-    setTimeout(() => getData(), 0);
-  }, []);
   return (
     <>
       <div className="backgroundVideo">
@@ -28,6 +12,7 @@ const Home = () => {
           src={Video}
           type="video/mp4"
         />
+        {/*
         <div className="search">
           <input type="text" list="search" />
           <datalist id="search">
@@ -46,6 +31,7 @@ const Home = () => {
             ))}
           </datalist>
         </div>
+      */}
       </div>
     </>
   );
