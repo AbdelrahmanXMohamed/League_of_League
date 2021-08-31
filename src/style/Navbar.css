@@ -18,12 +18,14 @@
     display: flex; }
   .Navbar .padNone {
     animation: removeNone 0.5s;
-    visibility: hidden; }
+    animation-fill-mode: forwards; }
 @keyframes removeNone {
   0% {
     opacity: 1; }
+  90% {
+    opacity: 0; }
   100% {
-    opacity: 0; } }
+    margin-bottom: -64px; } }
   .Navbar .root {
     flex-grow: 1;
     position: relative;

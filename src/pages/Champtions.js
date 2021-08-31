@@ -7,18 +7,13 @@ const Champtions = () => {
   const [champtions, setChamptions] = useState([]);
   let version = useVersionProvider();
 
-  const getData = () => {
-    if (version) {
-      fetch(
-        `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`
-      )
-        .then((response) => response.json())
-        .then((data) => setChamptions(data.data));
-    }
-  };
   useEffect(() => {
-    setTimeout(() => getData(), 0);
-  }, []);
+    fetch(
+      `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`
+    )
+      .then((response) => response.json())
+      .then((data) => setChamptions(data.data));
+  }, [version]);
   return (
     <>
       {champtions.length === 0 ? (

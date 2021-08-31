@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "../style/Home.css";
 import Video from "../resource/Arcane Animated Series Official Netflix Announcement.mp4";
 const Home = () => {

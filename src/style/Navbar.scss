@@ -29,15 +29,18 @@
   .padNone {
     @extend .pad;
     animation: removeNone 0.5s;
-    visibility: hidden;
+    animation-fill-mode: forwards;
   }
 
   @keyframes removeNone {
     0% {
       opacity: 1;
     }
-    100% {
+    90% {
       opacity: 0;
+    }
+    100% {
+      margin-bottom: -64px;
     }
   }
   .root {

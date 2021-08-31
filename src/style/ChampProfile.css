@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+.ChampProfile div.ProHead {
+  text-align: center;
+  position: relative; }
+  .ChampProfile div.ProHead div.Cover img {
+    border-radius: 0px 0px 5em 5em;
+    width: 100%; }
+  .ChampProfile div.ProHead div.Profile {
+    width: 20%;
+    margin: -12% auto 0; }
+    .ChampProfile div.ProHead div.Profile img {
+      border-radius: 100%;
+      width: 100%;
+      border: 0.5em solid rgba(255, 255, 255, 0.2); }
+  .ChampProfile div.ProHead div.Name p {
+    font-family: "Bebas Neue", cursive;
+    font-size: 2em;
+    margin: 0px -30% 0; }
+.ChampProfile div.ProBody {
+  border: 9px solid #e95f0d;
+  padding: 15px;
+  border-radius: 50px;
+  border-top: 0;
+  border-bottom: 0; }
+
+/*# sourceMappingURL=ChampProfile.css.map */
