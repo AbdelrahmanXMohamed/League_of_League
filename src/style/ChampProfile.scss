@@ -1,4 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+@font-face {
+  font-family: Manga_Temple;
+  src: url(/src/resource/manga_temple/mangatb.ttf);
+}
 
 .ChampProfile {
   div.ProHead {
@@ -23,17 +30,26 @@
     div.Name {
       //background-color: ivory;
       p {
-        font-family: "Bebas Neue", cursive;
-        font-size: 2em;
+        font-family: Manga_Temple, cursive;
+        font-size: 1.5em;
         margin: 0px -30% 0;
       }
     }
   }
   div.ProBody {
-    border: 9px solid #e95f0d;
-    padding: 15px;
-    border-radius: 50px;
-    border-top: 0;
-    border-bottom: 0;
+    div.lore {
+      border: 9px solid #e95f0d;
+      padding: 15px;
+      border-radius: 50px;
+      border-top: 0;
+      border-bottom: 0;
+      h2 {
+        font-family: Manga_Temple, cursive;
+      }
+      p.lore {
+        font-family: "Architects Daughter", cursive;
+        font-weight: bold;
+      }
+    }
   }
 }

@@ -14,8 +14,7 @@ const ChampProfile = (props) => {
       .then((response) => response.json())
       .then((data) => setChampdata(data.data[id]));
   }, [id, version]);
-  //
-  console.log(champdata.lore);
+  console.log(champdata);
   return (
     <>
       <Container className="ChampProfile">
@@ -38,8 +37,14 @@ const ChampProfile = (props) => {
         </div>
 
         <div className="ProBody">
-          <h3>Lore</h3>
-          <p>{champdata.lore}</p>
+          <div className="lore">
+            <h2>Lore</h2>
+            <p className="lore">{champdata.lore}</p>
+          </div>
+        </div>
+        <div className="ProBody">
+          <h2>Skills</h2>
+          <p className="lore">{champdata.lore}</p>
         </div>
       </Container>
     </>
