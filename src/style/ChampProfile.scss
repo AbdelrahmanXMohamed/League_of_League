@@ -13,14 +13,19 @@
     position: relative;
 
     div.Cover {
+      aspect-ratio: 16/9;
+      .Skeleton {
+        border-radius: 0px 0px 5em 5em;
+      }
       img {
         border-radius: 0px 0px 5em 5em;
         width: 100%;
       }
     }
     div.Profile {
+      aspect-ratio: 1/1;
       width: 20%;
-      margin: -12% auto 0;
+      margin: -11% auto 0;
       img {
         border-radius: 100%;
         width: 100%;
@@ -28,21 +33,29 @@
       }
     }
     div.Name {
-      //background-color: ivory;
-      p {
+      h3 {
         font-family: Manga_Temple, cursive;
         font-size: 1.5em;
-        margin: 0px -30% 0;
+        margin: 0;
+      }
+    }
+    div.Title {
+      p {
+        font-family: Manga_Temple, cursive;
+        font-size: 1em;
       }
     }
   }
   div.ProBody {
-    div.lore {
-      border: 9px solid #e95f0d;
+    div.Lore,
+    div.Skills {
+      border: 10px solid #e95f0d;
       padding: 15px;
-      border-radius: 50px;
+      border-radius: 0px 0px 0px 0px;
       border-top: 0;
       border-bottom: 0;
+      background-color: #e95f0d1a;
+      border-right: 0;
       h2 {
         font-family: Manga_Temple, cursive;
       }

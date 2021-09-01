@@ -8,29 +8,42 @@
 .ChampProfile div.ProHead {
   text-align: center;
   position: relative; }
-  .ChampProfile div.ProHead div.Cover img {
-    border-radius: 0px 0px 5em 5em;
-    width: 100%; }
+  .ChampProfile div.ProHead div.Cover {
+    aspect-ratio: 16/9; }
+    .ChampProfile div.ProHead div.Cover .Skeleton {
+      border-radius: 0px 0px 5em 5em; }
+    .ChampProfile div.ProHead div.Cover img {
+      border-radius: 0px 0px 5em 5em;
+      width: 100%; }
   .ChampProfile div.ProHead div.Profile {
+    aspect-ratio: 1/1;
     width: 20%;
-    margin: -12% auto 0; }
+    margin: -11% auto 0; }
     .ChampProfile div.ProHead div.Profile img {
       border-radius: 100%;
       width: 100%;
       border: 0.5em solid rgba(255, 255, 255, 0.2); }
-  .ChampProfile div.ProHead div.Name p {
+  .ChampProfile div.ProHead div.Name h3 {
     font-family: Manga_Temple, cursive;
     font-size: 1.5em;
-    margin: 0px -30% 0; }
-.ChampProfile div.ProBody div.lore {
-  border: 9px solid #e95f0d;
+    margin: 0; }
+  .ChampProfile div.ProHead div.Title p {
+    font-family: Manga_Temple, cursive;
+    font-size: 1em; }
+.ChampProfile div.ProBody div.Lore,
+.ChampProfile div.ProBody div.Skills {
+  border: 10px solid #e95f0d;
   padding: 15px;
-  border-radius: 50px;
+  border-radius: 0px 0px 0px 0px;
   border-top: 0;
-  border-bottom: 0; }
-  .ChampProfile div.ProBody div.lore h2 {
+  border-bottom: 0;
+  background-color: #e95f0d1a;
+  border-right: 0; }
+  .ChampProfile div.ProBody div.Lore h2,
+  .ChampProfile div.ProBody div.Skills h2 {
     font-family: Manga_Temple, cursive; }
-  .ChampProfile div.ProBody div.lore p.lore {
+  .ChampProfile div.ProBody div.Lore p.lore,
+  .ChampProfile div.ProBody div.Skills p.lore {
     font-family: "Architects Daughter", cursive;
     font-weight: bold; }
 
