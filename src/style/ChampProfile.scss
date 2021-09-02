@@ -32,14 +32,24 @@
         border: 0.5em solid rgba(255, 255, 255, 0.2);
       }
     }
-    div.Name {
+    center.Name {
+      .MuiSkeleton-text {
+        max-width: 175px;
+        width: 12.5%;
+        min-width: 50px;
+      }
       h3 {
         font-family: Manga_Temple, cursive;
         font-size: 1.5em;
         margin: 0;
       }
     }
-    div.Title {
+    center.Title {
+      .MuiSkeleton-text {
+        max-width: 250px;
+        width: 25%;
+        min-width: 100px;
+      }
       p {
         font-family: Manga_Temple, cursive;
         font-size: 1em;
@@ -59,7 +69,7 @@
       h2 {
         font-family: Manga_Temple, cursive;
       }
-      p.lore {
+      .lore {
         font-family: "Architects Daughter", cursive;
         font-weight: bold;
       }
