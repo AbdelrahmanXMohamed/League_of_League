@@ -6,22 +6,17 @@ import { useTheme } from "@material-ui/core/styles";
 import { Container, Grid, useMediaQuery, Zoom } from "@material-ui/core";
 import "../style/Champtions.css";
 const Champtions = () => {
-  const [champtions, setChamptions] = useState([]);
-  let version = useVersionProvider();
+  let [champdata, setChampdata] = useState([]);
+  const { version, champtions } = useVersionProvider();
+  console.log(version, champtions);
   const theme = useTheme();
   const isXLarge = useMediaQuery(theme.breakpoints.up("xl"));
   const isMd = useMediaQuery(theme.breakpoints.up("md"));
+  useEffect(() => setChampdata(champtions));
 
-  useEffect(() => {
-    fetch(
-      `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`
-    )
-      .then((response) => response.json())
-      .then((data) => setChamptions(data.data));
-  }, [version]);
   return (
     <>
-      {champtions.length === 0 ? (
+      {champdata.length === 0 ? (
         <Loading />
       ) : (
         <Container maxWidth={isXLarge ? "xl" : "lg"}>
@@ -32,17 +27,17 @@ const Champtions = () => {
             alignItems="center"
             spacing={1}
           >
-            {Object.keys(champtions).map((champ, index) =>
+            {champdata.map((champ, index) =>
               isMd ? (
                 <Zoom
-                  key={champ}
+                  key={champ.name}
                   in={true}
                   style={{
                     transitionDelay: `${index * 100}ms`,
                   }}
                 >
                   <Grid item xl={2} md={2} sm={4} xs={6}>
-                    <ChamptionsCard champ={champtions[champ]} />
+                    <ChamptionsCard champ={champ} />
                   </Grid>
                 </Zoom>
               ) : (

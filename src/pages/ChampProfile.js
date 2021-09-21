@@ -8,7 +8,7 @@ import "../style/ChampProfile.css";
 const ChampProfile = (props) => {
   let { id } = useParams();
   let [champdata, setChampdata] = useState(null);
-  let version = useVersionProvider();
+  let { version } = useVersionProvider();
   const theme = useTheme();
   const isXLarge = useMediaQuery(theme.breakpoints.up("xl"));
 

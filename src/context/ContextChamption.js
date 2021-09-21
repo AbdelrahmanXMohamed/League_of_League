@@ -5,27 +5,29 @@ export function useVersionProvider() {
   return useContext(ContextVersion);
 }
 export function VersionProvider({ children }) {
-  // const [champtions, setChamptions] = useState([]);
+  const [champtions, setChamptions] = useState([]);
   // for lastest version
   const [version, setVersion] = useState(null);
   const getData = () => {
     fetch("https://ddragon.leagueoflegends.com/api/versions.json")
       .then((response) => response.json())
-      .then((data) => setVersion(data[0]));
-    //getting all chamption
-    /*.then((data) =>
+      .then((versions) =>
         fetch(
-          `http://ddragon.leagueoflegends.com/cdn/${data[0]}/data/en_US/champion.json`
+          `http://ddragon.leagueoflegends.com/cdn/${versions[0]}/data/en_US/champion.json`
         )
           .then((response) => response.json())
-          .then((data) => setChamptions(data.data))
-      );*/
+          .then((data) => {
+            let champ = Object.keys(data.data).map((key) => data.data[key]);
+            setChamptions(champ);
+            setVersion(versions[0]);
+          })
+      );
   };
   useEffect(() => {
     getData();
   }, []);
   return (
-    <ContextVersion.Provider value={version}>
+    <ContextVersion.Provider value={{ version, champtions }}>
       {children}
     </ContextVersion.Provider>
   );

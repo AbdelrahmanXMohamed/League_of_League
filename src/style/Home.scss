@@ -1,8 +1,78 @@
 .Home {
   display: grid;
-  height: 100vh;
+  //height: 60vh;
   place-items: center;
-} /*
+  background: #eb620d;
+  background: -webkit-linear-gradient(to top, #eb620d, #f6f6f6);
+  background: linear-gradient(to top, #eb620d, #f6f6f6);
+  .Top {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+
+    img {
+      width: 100%;
+    }
+    .SearchBorder {
+      text-align: center;
+      border: 5px #ffffffa2;
+      border-style: ridge solid;
+      border-radius: 35px;
+      width: 75%;
+      input {
+        width: 100%;
+        border-radius: 99999px;
+        border: 0px;
+        padding: 10px;
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* CSS */
+  .Home {
+    height: 100vh;
+  }
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  /* CSS */
+  .Home {
+    height: 100vh;
+  }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  .Home {
+    height: 100vh;
+  }
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .Home {
+    height: 100vh;
+  }
+}
+
+/*
 .backgroundVideo {
   width: 100%;
   position: relative;
@@ -25,7 +95,7 @@
     background: rgba(255, 255, 255, 0.5);
     font-size: calc(18px - 1vw);
   }
-}*/
+}
 .backgroundVideo {
   width: 100%;
   height: 100vh;
@@ -61,3 +131,4 @@
     font-size: 18px;
   }
 }
+*/

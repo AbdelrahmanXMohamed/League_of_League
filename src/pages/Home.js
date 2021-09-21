@@ -1,37 +1,20 @@
 import React from "react";
 import "../style/Home.css";
-import Video from "../resource/Arcane Animated Series Official Netflix Announcement.mp4";
+import logo from "../resource/Logo.png";
 const Home = () => {
   return (
     <>
-      <div className="backgroundVideo">
-        <video
-          autoPlay={true}
-          loop={true}
-          muted={true}
-          src={Video}
-          type="video/mp4"
-        />
-        {/*
-        <div className="search">
-          <input type="text" list="search" />
-          <datalist id="search">
-            {Object.keys(champtions).map((champ) => (
-              <React.Fragment key={champ}>
-                <option
-                  style={{
-                    backgroundImage:
-                      "url(" +
-                      "http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/Aatrox.png" +
-                      ")",
-                  }}
-                  value={champtions[champ].name}
-                ></option>
-              </React.Fragment>
-            ))}
-          </datalist>
+      <div className="Home">
+        <div className="Top">
+          <img src={logo} alt="logo" />
+          <div className="SearchBorder">
+            <input
+              placeholder="Chamption Name"
+              type="text"
+              className="Search"
+            />
+          </div>
         </div>
-      */}
       </div>
     </>
   );
