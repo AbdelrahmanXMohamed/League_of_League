@@ -9,12 +9,12 @@ import {
   CssBaseline,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-
+import NavLinks from "./NavLinks";
 import { Link } from "react-router-dom";
 import Logo from "../resource/Logo.png";
 import "../style/Navbar.css";
 
-const Navbar = (props) => {
+const Navbar = () => {
   const [anchor, setAnchor] = React.useState(false);
   const [show, setShow] = React.useState(false);
   const open = anchor ? "mobNav" : "mobNavBack";
@@ -28,15 +28,6 @@ const Navbar = (props) => {
     }
     setAnchor(!anchor);
   };
-  /*
-  const handleScroll = () => {
-    let display = window.scrollY;
-    console.log(display);
-    if (display) {
-      setAnchor(false);
-      setShow(false);
-    }
-  };*/
 
   return (
     <div className="Navbar">
@@ -58,44 +49,7 @@ const Navbar = (props) => {
                 </>
               ) : null}
               <img src={Logo} alt="logo" width="65px" />
-              <div className="title">
-                {isMobile ? null : (
-                  <>
-                    <Button
-                      variant="text"
-                      component={Link}
-                      to="/"
-                      className="makeItColor root"
-                    >
-                      Home
-                    </Button>
-                    <Button
-                      variant="text"
-                      component={Link}
-                      to="/champtions"
-                      className="makeItColor root"
-                    >
-                      Champtions
-                    </Button>
-                    <Button
-                      variant="text"
-                      component={Link}
-                      to="/About"
-                      className="makeItColor root"
-                    >
-                      About
-                    </Button>
-                    <Button
-                      variant="text"
-                      component={Link}
-                      to="/Personal"
-                      className="makeItColor root"
-                    >
-                      Personal
-                    </Button>
-                  </>
-                )}
-              </div>
+              <div className="title">{isMobile ? null : <NavLinks />}</div>
 
               <Button className="makeItColor" component={Link} to="/Login">
                 Login
@@ -106,38 +60,7 @@ const Navbar = (props) => {
         {isMobile && show ? (
           <div className={open}>
             <div className={anchor ? "pad" : "padNone"}>
-              <Button
-                variant="text"
-                component={Link}
-                to="/"
-                className="makeItColor root"
-              >
-                Home
-              </Button>
-              <Button
-                variant="text"
-                component={Link}
-                to="/Champtions"
-                className="makeItColor root"
-              >
-                Champtions
-              </Button>
-              <Button
-                variant="text"
-                component={Link}
-                to="/About"
-                className="makeItColor root"
-              >
-                About
-              </Button>
-              <Button
-                variant="text"
-                component={Link}
-                to="/Personal"
-                className="makeItColor root"
-              >
-                Personal
-              </Button>
+              <NavLinks />
             </div>
           </div>
         ) : null}

@@ -2,10 +2,15 @@
   display: grid;
   height: 100vh;
   place-items: center;
-  animation: showing 1s; }
+  animation: showing 1s;
+  background: #eb620d;
+  background: -webkit-linear-gradient(to top, #eb620d, #f6f6f6);
+  background: linear-gradient(to top, #eb620d, #f6f6f6); }
   .Login form {
+    background: #eb620d;
+    background: -webkit-linear-gradient(to top, #eb620d, #f6f6f6);
+    background: linear-gradient(to top, #eb620d, #f6f6f6);
     padding: 10rem;
-    border: 10px solid #e95f0d;
     text-align: center;
     box-shadow: 0 30px 30px rgba(0, 0, 0, 0.3);
     border-radius: 60px; }
@@ -20,6 +25,7 @@
     .Login form .handleImage .Logo {
       width: 14rem; }
     .Login form .handleInput {
+      background-color: #f6f6f669;
       position: relative;
       border: 2px solid #e95f0d;
       border-radius: 30px;
@@ -35,13 +41,16 @@
         text-align: center;
         padding-block: 8px;
         border-radius: 20px;
+        background-color: transparent;
         border: 0px; }
       .Login form .handleInput input:focus-visible {
         outline: 0px; }
       .Login form .handleInput ::placeholder {
-        color: #e95f0d;
+        color: #000000a4;
         text-align: center; }
     .Login form input[type="submit"] {
+      background-color: #f6f6f669;
+      color: #000000a4;
       width: 100%;
       border: 2px solid #e95f0d;
       padding: 10px;
@@ -53,14 +62,14 @@
       animation-fill-mode: forwards; }
 @keyframes glow {
   0% {
-    background-color: black;
-    color: white; }
+    background-color: #f6f6f669;
+    color: #000000a4; }
   50% {
     background-color: gray;
-    color: black; }
+    color: #000000a4; }
   100% {
-    background-color: black;
-    color: white; } }
+    background-color: #f6f6f669;
+    color: #000000a4; } }
   .Login .moreLinks {
     margin-top: 10px; }
   @media (max-width: 560px) {

@@ -90,7 +90,7 @@ const ChampProfile = (props) => {
         <br />
         <div className="ProBody">
           <div className="Skills">
-            <h2>How to counter ?</h2>
+            <h2>How to counter {id || champdata.name} ?</h2>
             {Boolean(champdata) ? (
               <ul className="lore">
                 {champdata["enemytips"].map((data, index) => (
