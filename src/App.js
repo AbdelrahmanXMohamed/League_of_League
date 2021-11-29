@@ -8,7 +8,6 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import ForgetPassword from "./pages/ForgetPassword";
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { VersionProvider } from "./context/ContextChamption";
 
@@ -66,5 +65,5 @@ export default App;
           Learn React
         </a>
       </header>
-    </div> 
+    </div>
     */

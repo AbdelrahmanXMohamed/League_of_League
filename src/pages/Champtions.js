@@ -13,7 +13,13 @@ const Champtions = () => {
   const isXLarge = useMediaQuery(theme.breakpoints.up("xl"));
   const isMd = useMediaQuery(theme.breakpoints.up("md"));
   useEffect(() => setChampdata(champtions));
-
+  useEffect(function () {
+    fetch("http://127.0.0.1:5000/api")
+      .then(response =>
+        response.json()
+      )
+      .then(data => console.log(data)).catch(error => console.log(error))
+  })
   return (
     <>
       {champdata.length === 0 ? (
