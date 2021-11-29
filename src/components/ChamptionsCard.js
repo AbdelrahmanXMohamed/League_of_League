@@ -7,7 +7,6 @@ const ChamptionsCard = ({ champ }) => {
   const go = () => {
     history.push(`/Champtions/Profile/${champ.id}`);
   };
-
   return (
     <div className="ChamptionsCard" onClick={go}>
       <figure className="card">

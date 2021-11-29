@@ -1,5 +1,8 @@
 from django.urls import path
 from  . import views
 urlpatterns = [
-path("", views.test,name="index")
+path("", views.test,name="index"),
+path("currentChampions", views.current_champtions,name="current_champtions"),
+path("dataOfCertainUser",views.data_for_user,name="data_for_user")
+
 ]
