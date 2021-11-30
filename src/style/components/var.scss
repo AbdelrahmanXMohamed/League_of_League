@@ -1,0 +1,86 @@
+$CommonColor0: #f4f4f4;
+$CommonColor1: #e95f0d;
+$CommonColor3: #000000a4;
+$CommonColor4: #e4e4e4;
+$fadeAnimationdurationLogin: 1s;
+$InputBackground: #f6f6f669;
+$GradriantBackground1: #eb620d;
+$GradriantBackground2: -webkit-linear-gradient(to top, #eb620d, #f6f6f6);
+$GradriantBackground3: linear-gradient(to top, #eb620d, #f6f6f6);
+
+@keyframes down {
+  0% {
+    opacity: 0;
+    margin-top: 1rem;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 3rem;
+  }
+}
+@keyframes back {
+  0% {
+    opacity: 1;
+    margin-top: 3rem;
+
+    background: $CommonColor1;
+  }
+  100% {
+    opacity: 0;
+    margin-top: 0rem;
+    display: none;
+  }
+}
+@keyframes loginFadded {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+@keyframes removeNone {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    margin-bottom: -64px;
+  }
+}
+@keyframes showing {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes glow {
+  0% {
+    background-color: $InputBackground;
+    color: $CommonColor3;
+  }
+  50% {
+    background-color: gray;
+    color: $CommonColor3;
+  }
+  100% {
+    background-color: $InputBackground;
+    color: $CommonColor3;
+  }
+}
+@keyframes logo {
+  0% {
+    top: 400px;
+    width: 6.5rem;
+    height: 5rem;
+  }
+  100% {
+    top: 380px;
+    width: 13rem;
+    height: 10rem;
+  }
+}

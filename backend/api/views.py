@@ -19,6 +19,10 @@ def current_champtions(request):
     r=requests.get(f'http://ddragon.leagueoflegends.com/cdn/{current_version()}/data/en_US/champion.json')
     return JsonResponse(r.json())
 
+def certain_chamption(request,id):
+    r =requests.get(f'http://ddragon.leagueoflegends.com/cdn/{current_version()}/data/en_US/champion/{id}.json')
+    return JsonResponse(r.json(),safe=False)
+
 @csrf_exempt
 def data_for_user(request):
     if request.method == "POST":

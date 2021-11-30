@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import "../style/Login.css";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import Logo from "../resource/Logo.png";
 import { useHistory } from "react-router-dom";

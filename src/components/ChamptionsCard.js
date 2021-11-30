@@ -1,9 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import "../style/ChamptionsCard.css";
 const ChamptionsCard = ({ champ }) => {
   let history = useHistory();
-
   const go = () => {
     history.push(`/Champtions/Profile/${champ.id}`);
   };

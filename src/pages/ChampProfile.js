@@ -1,27 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useVersionProvider } from "../context/ContextChamption";
-import { Container, useMediaQuery } from "@material-ui/core";
-import { useTheme } from "@material-ui/core/styles";
+import axios from "axios";
 import { Skeleton } from "@material-ui/lab";
-import "../style/ChampProfile.css";
 const ChampProfile = (props) => {
   let { id } = useParams();
   let [champdata, setChampdata] = useState(null);
-  let { version } = useVersionProvider();
-  const theme = useTheme();
-  const isXLarge = useMediaQuery(theme.breakpoints.up("xl"));
+  let [version, setVersion] = useState("");
 
   useEffect(() => {
-    fetch(
-      `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${id}.json`
-    )
-      .then((response) => response.json())
-      .then((data) => setChampdata(data.data[id]));
-  }, [id, version]);
+    axios.get(`http://127.0.0.1:5000/api/certainChamption/${id}`).then(function ({ data }) {
+      setChampdata(data.data[`${id}`])
+      setVersion(data.version)
+    })
+  })
   return (
     <>
-      <Container maxWidth={isXLarge ? "xl" : "lg"} className="ChampProfile">
+      <div className="ChampProfile">
         <div className="ProHead">
           <div className="Cover">
             {Boolean(champdata) ? (
@@ -129,7 +123,7 @@ const ChampProfile = (props) => {
             )}
           </div>
         </div>
-      </Container>
+      </div>
     </>
   );
 };

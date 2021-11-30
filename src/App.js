@@ -1,4 +1,3 @@
-import "./App.css";
 import Champtions from "./pages/Champtions";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -9,8 +8,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import ForgetPassword from "./pages/ForgetPassword";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { VersionProvider } from "./context/ContextChamption";
-
+import "./style/styles.css"
 function App() {
   return (
     <Router>
@@ -20,14 +18,10 @@ function App() {
           <Home />
         </Route>
         <Route exact path="/Champtions">
-          <VersionProvider>
-            <Champtions />
-          </VersionProvider>
+          <Champtions />
         </Route>
         <Route path="/Champtions/Profile/:id">
-          <VersionProvider>
-            <ChampProfile />
-          </VersionProvider>
+          <ChampProfile />
         </Route>
         <Route path="/Login">
           <Login />
@@ -50,20 +44,3 @@ function App() {
 }
 
 export default App;
-/* <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-    */
