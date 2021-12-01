@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ChamptionsCard from "../components/ChamptionsCard";
 import Loading from "../components/Loading";
-import { Zoom } from "@material-ui/core";
 import axios from 'axios';
 
 const Champtions = () => {
@@ -17,6 +16,7 @@ const Champtions = () => {
         setChampdata(champtions)
       }
     )
+
   }, []);
   return (
     <>
@@ -27,15 +27,7 @@ const Champtions = () => {
 
           {champdata.map((champ, index) =>
 
-            <Zoom
-              key={index}
-              in={true}
-              style={{
-                transitionDelay: `${index * 400}ms`,
-              }}
-            >
-              <ChamptionsCard champ={champ} />
-            </Zoom>
+            <ChamptionsCard key={index} champ={champ} />
 
           )}
 

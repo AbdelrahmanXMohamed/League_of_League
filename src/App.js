@@ -17,22 +17,22 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/Champtions">
+        <Route exact path="/champtions">
           <Champtions />
         </Route>
-        <Route path="/Champtions/Profile/:id">
+        <Route path="/champtions/profile/:id">
           <ChampProfile />
         </Route>
-        <Route path="/Login">
+        <Route path="/login">
           <Login />
         </Route>
-        <Route path="/Register">
+        <Route path="/register">
           <Register />
         </Route>
-        <Route path="/ForgetPassword">
+        <Route path="/forget_password">
           <ForgetPassword />
         </Route>
-        <Route path="/Dashboard">
+        <Route path="/dashboard">
           <Dashboard />
         </Route>
         <Route path="*">

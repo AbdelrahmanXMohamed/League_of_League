@@ -11,7 +11,7 @@ const Navbar = () => {
   }
   return (
     <div className={navbar ? "Navbar" : "Navbar animationReflect"}>
-      <MenuIcon className="makeItColor Toggle" onClick={() => handleNavbar()} style={{ fontSize: "34px" }} />
+      <MenuIcon className="makeItColor Toggle" onClick={() => handleNavbar()} />
       <div className="logo">
         <img src={Logo} width="75px" alt="logo" />
       </div>

@@ -12,7 +12,7 @@ const ChampProfile = (props) => {
       setChampdata(data.data[`${id}`])
       setVersion(data.version)
     })
-  })
+  }, [id])
   return (
     <>
       <div className="ChampProfile">
