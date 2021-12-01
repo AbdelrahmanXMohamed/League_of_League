@@ -22,11 +22,7 @@
     margin-bottom: 60px;
     transition: 1s;
   }
-  .navColor {
-    background-color: $CommonColor4;
-    position: inherit;
-    margin-bottom: -46px;
-  }
+
   .mobileNav {
     @media (max-width: 550px) {
       position: absolute;
@@ -37,21 +33,9 @@
       height: 60px;
       background-color: #e95f0d;
       z-index: -1;
-      animation: invisible 1s forwards;
       top: 54px;
       transform: translateY(-55px);
       transition: 1s;
-      @keyframes invisible {
-        0% {
-          opacity: 0;
-        }
-        99% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
 
       .makeItColor {
         color: white;
@@ -65,7 +49,20 @@
     &.addAnimation {
       opacity: 1 !important;
       transition: 1s !important;
+      z-index: -1;
       transform: translateY(5px) !important;
+      animation: useable 1s forwards;
+      @keyframes useable {
+        0% {
+          z-index: -1;
+        }
+        99% {
+          z-index: -1;
+        }
+        100% {
+          z-index: 1;
+        }
+      }
     }
   }
   .makeItColor {
@@ -81,6 +78,7 @@
       @media (max-width: 550px) {
         display: block !important;
         margin-right: -14px;
+        z-index: 1;
       }
     }
   }
