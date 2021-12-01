@@ -9,10 +9,9 @@ const Navbar = () => {
   const handleNavbar = () => {
     setNavbar(!navbar)
   }
-  console.log(navbar)
   return (
     <div className={navbar ? "Navbar" : "Navbar animationReflect"}>
-      <MenuIcon className="makeItColor" onClick={() => handleNavbar()} style={{ fontSize: "34px" }} />
+      <MenuIcon className="makeItColor Toggle" onClick={() => handleNavbar()} style={{ fontSize: "34px" }} />
       <div className="logo">
         <img src={Logo} width="75px" alt="logo" />
       </div>
