@@ -1,4 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, {
+  useRef,
+  // useState,
+  useEffect
+} from "react";
 // import MailOutlineIcon from "@material-ui/icons/MailOutline";
 // import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 // import Logo from "../resource/Logo.png";
@@ -10,7 +14,14 @@ const Login = () => {
   history.location.pathname.replace("/", "")
   const username = useRef("");
   const password = useRef("");
-  const [faded, setfaded] = useState(false);
+  const Login = useRef();
+  // const [faded, setfaded] = useState(false);
+  useEffect(() => {
+    return () => {
+      console.log("unmount")
+      console.log(Login)
+    }
+  }, [])
   const handleLogin = (username, password) => {
     console.log("username : " + username);
     console.log("password : " + password);
@@ -21,82 +32,36 @@ const Login = () => {
     const passwordData = password.current.value;
     handleLogin(usernameData, passwordData);
   };
-  const redirect = (e) => {
-    setfaded(true);
-    console.log(e.target.id);
-    setTimeout(() => history.push(`/${e.target.id}`), 500);
-  };
+  // const redirect = (e) => {
+  //   setfaded(true);
+  //   console.log(e.target.id);
+  //   setTimeout(() => history.push(`/${e.target.id}`), 500);
+  // };
   return (
-    <>
-      <div className="Form">
-        <h2>Login</h2>
-        <div className="Sign">
-          <Link className={history.location.pathname.replace("/", "") === "login" ? "login active" : "login"} to="/login">
-            Login
-          </Link>
-          <Link className={history.location.pathname.replace("/", "") === "register" ? "register active" : "register"} to="/register">
-            Register
-          </Link>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <input type="text" ref={username} name="username" placeholder="Username" />
-          <input type="password" ref={password} name="password" placeholder="Password" />
-          <Link to="/forget_password">Forget Password ?</Link>
-          <input type="submit" value="Login" />
-
-        </form>
-        <p>Not a memeber <Link to="/forget_password">Register Now ?</Link></p>
+    <form className="Form" onSubmit={handleSubmit}>
+      <h2>Login</h2>
+      <div className="Sign">
+        <Link ref={Login} className={history.location.pathname.replace("/", "") === "login" ? "login active" : "login"} to="/login">
+          Login
+        </Link>
+        <Link className={history.location.pathname.replace("/", "") === "register" ? "register active" : "register"} to="/register">
+          Register
+        </Link>
       </div>
-    </>
+      <input type="text" ref={username} name="username" placeholder="Username" />
+      <input type="password" ref={password} name="password" placeholder="Password" />
+      <div className="last">
+        <div className="remember_me">
+          <input type="checkbox" id="Remember_me" />
+          <label> Remember me</label>
+        </div>
+        <Link className="right" to="/forget_password">Forget Password ?</Link>
+      </div>
+      <input type="submit" value="Login" />
+
+      <p>Not a memeber <Link to="/register" style={{ fontSize: "inherit" }}>Register Now ?</Link></p>
+    </form>
   );
 };
 
 export default Login;
-/*
-    <>
-      <div className={"Login"}>
-        <form onSubmit={handleSubmit}>
-          <div className={faded ? "fade" : null}>
-            <div className="handleImage">
-              <img src={Logo} className="Logo" alt="logo" />
-            </div>
-            <div className="handleHeaderLogin">
-              <h1>Login</h1>
-            </div>
-            <div className="handleInput">
-              <MailOutlineIcon />
-              <div className="handleLogo">
-                <input
-                  type="text"
-                  name="email"
-                  ref={email}
-                  placeholder="Email"
-                />
-              </div>
-            </div>
-            <div className="handleInput">
-              <LockOutlinedIcon />
-              <div className="handleLogo">
-                <input
-                  type="password"
-                  name="password"
-                  ref={password}
-                  placeholder="Password"
-                />
-              </div>
-            </div>
-            <div className="handleSubmit">
-              <input type="submit" className="Submit" value="Login" />
-            </div>
-            <div className="moreLinks">
-              <p id="Register" onClick={redirect}>
-                Register
-              </p>
-              <p id="ForgetPassword" onClick={redirect}>
-                Forget Password ?
-              </p>
-            </div>
-          </div>
-        </form>
-      </div>
-    </>*/

@@ -9,13 +9,14 @@ const Navbar = () => {
   const handleNavbar = () => {
     setNavbar(!navbar)
   }
+
   return (
     <div className={navbar ? "Navbar" : "Navbar animationReflect"}>
       <MenuIcon className="makeItColor Toggle" onClick={() => handleNavbar()} />
       <div className="logo">
-        <img src={Logo} width="75px" alt="logo" />
+        <img src={Logo} alt="logo" />
       </div>
-      <div className={navbar ? "mobileNav" : "mobileNav addAnimation"} >
+      <div className={navbar ? "mobileNav" : "mobileNav addAnimation"} onTransitionEnd={(e) => console.log(e)} onTransitionRun={() => console.log("here")}>
         <Link className="makeItColor" to="/">
           Home
         </Link>

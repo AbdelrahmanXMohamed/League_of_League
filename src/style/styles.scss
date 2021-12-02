@@ -1,4 +1,6 @@
 @import "./components/var.scss";
+@import "./components/largeScreen.scss";
+
 @import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
@@ -15,20 +17,20 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+// body {
+//   margin: 0;
+//   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+//     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+//     sans-serif;
 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+// }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
+// code {
+//   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+//     monospace;
+// }
 
 .Navbar {
   display: flex;
@@ -37,6 +39,9 @@ code {
   position: relative;
   margin-bottom: 0;
   transition: 1s;
+  img {
+    width: 4.6875em;
+  }
 
   .mobileNav {
     @media (max-width: 550px) {
@@ -83,15 +88,15 @@ code {
   .makeItColor {
     color: $CommonColor3;
     text-decoration: none;
-    padding: 8px 6px;
+    padding: 0.5rem 1rem;
     text-transform: uppercase;
     line-height: 1.75;
-    font-size: 16px;
+    font-size: 1em;
     transition: 1s;
     &.Toggle {
       display: none;
       @media (max-width: 550px) {
-        font-size: 48px;
+        font-size: 3em;
         display: block !important;
         margin-right: -14px;
         z-index: 1;
@@ -100,11 +105,11 @@ code {
   }
 
   .makeItColor:hover {
-    border-radius: 4px;
+    border-radius: 0.25em;
     background-color: rgba(0, 0, 0, 0.04);
   }
   .right {
-    margin: 0 5px 0 auto;
+    margin: 0 0.3125em 0 auto;
   }
 
   @media (max-width: 550px) {
@@ -115,160 +120,94 @@ code {
   }
 }
 
-.Form {
+form.Form {
   display: flex;
-  width: fit-content;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0px 0 19px rgba(0, 0, 0, 0.2);
-  //margin: 25% auto;
-  padding: 75px;
-  gap: 10px;
+  box-shadow: 0px 0 1.1875em rgba(0, 0, 0, 0.2);
+  padding: 3rem 5rem;
   background-color: whitesmoke;
   margin: 0 auto;
-  width: 30%;
-  position: relative;
-  top: 25vh;
-  padding-top: 40px;
-  h2 {
-    padding-bottom: 20px;
-  }
+  transform: translateY(calc(30% - 58.55px));
+  width: 40.75em;
+  height: 40.75em;
+
   .Sign {
     display: grid;
     grid-template-columns: 1fr 1fr;
     text-align: center;
     width: 100%;
-
     .login,
     .register {
-      padding: 18px;
       text-decoration: none;
       color: black;
       font-weight: 700;
-      font-size: large;
+      font-size: 1.2em;
+      padding: 1rem;
+      transition: 1s;
+
       &:hover {
         color: #000;
       }
-      &.active {
-        background-color: $CommonColor1;
-        border-radius: 4px;
-        color: white;
-      }
+    }
+    .login.active {
+      background-color: $CommonColor1;
+      border-radius: 0.25em;
+      color: white;
+      transform: translateX(0px);
+      transition: 1s;
+    }
+    .register.active {
+      background-color: $CommonColor1;
+      border-radius: 0.25em;
+      color: white;
+      transform: translateX(0px);
+      transition: 1s;
     }
   }
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  input {
+    padding: 0.875em;
+    border-radius: 4px;
+    border: 0.0625em solid black;
+    outline: none;
     width: 100%;
-    input {
-      padding: 14px;
-      border-radius: 4px;
-      border: 1px solid black;
-      outline: none;
+  }
+  div.last {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    white-space: nowrap;
+    width: 100%;
+    .right {
+      text-align: right;
     }
+    #Remember_me {
+      width: 0.875em;
+      height: 0.875em;
+    }
+  }
+  p {
+    white-space: nowrap;
   }
   @media (max-width: 1427px) and(min-width:700px) {
-    padding: 5%;
-    top: 20vh;
-    width: calc(50% + 50px);
+    padding: 50px;
+
+    min-width: 500px;
+    width: 80%;
+    max-width: 600px;
+    // width: calc(50% + 50px);
   }
   @media (min-width: 500px) and (max-width: 700px) {
-    padding: 60px;
-    top: 10vh;
-    width: calc(100% - 190px);
+    padding: 40px;
+    width: 500px;
+    // width: calc(100% - 190px);
   }
-  @media (min-width: 375px) and (max-width: 550px) {
-    padding: 60px;
-    top: 10vh;
+  @media (max-width: 550px) {
+    padding: 30px;
     width: 92%;
   }
 }
 
-/*.Login {
-  display: grid;
-  height: 100vh;
-  place-items: center;
-
-  form {
-    // background: $GradriantBackground1;
-    // background: $GradriantBackground2;
-    // background: $GradriantBackground3;
-    padding: 14px;
-    // border: 10px solid $CommonColor1;
-    text-align: center;
-    //position: relative;
-    box-shadow: 0 30px 30px rgba(0, 0, 0, 0.3);
-    border-radius: 60px;
-    .fade {
-      animation: loginFadded $fadeAnimationdurationLogin;
-      opacity: 0;
-    }
-
-    .handleImage {
-      .Logo {
-        width: 14rem;
-      }
-    }
-
-    .handleInput {
-      background-color: $InputBackground;
-      position: relative;
-      border: 2px solid $CommonColor1;
-      border-radius: 30px;
-      margin-bottom: 10px;
-      svg {
-        position: absolute;
-        font-size: 15px;
-        top: 27%;
-        left: 3%;
-      }
-      .handleLogo {
-        padding-left: 25px;
-      }
-      input {
-        text-align: center;
-        padding-block: 8px;
-        border-radius: 20px;
-        background-color: transparent;
-
-        border: 0px;
-      }
-      input:focus-visible {
-        outline: 0px;
-      }
-      ::placeholder {
-        color: $CommonColor3;
-        text-align: center;
-      }
-    }
-    input[type="submit"] {
-      background-color: $InputBackground;
-      color: $CommonColor3;
-
-      width: 100%;
-      border: 2px solid $CommonColor1;
-      padding: 10px;
-      border-radius: 30px;
-      font-family: Roboto;
-      font-weight: bold;
-    }
-    input[type="submit"]:hover {
-      animation: glow 1s infinite;
-      animation-fill-mode: forwards;
-    }
-  }
-
-  .moreLinks {
-    margin-top: 10px;
-  }
-  @media (max-width: 560px) {
-    form {
-      padding: 3em;
-    }
-  }
-}*/
 .Loading .middle {
   display: grid;
   height: 100vh;
@@ -321,7 +260,7 @@ code {
     max-width: 250px;
     max-height: 380px;
     overflow: hidden;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0.3125em 0.625em rgba(0, 0, 0, 0.8);
     transform-origin: center top;
     transform-style: preserve-3d;
     transform: translateZ(0);
@@ -401,7 +340,7 @@ code {
   flex-wrap: wrap;
 }
 .ChampProfile {
-  max-width: 1024px;
+  max-width: 64em;
   margin: 0 auto;
   div.ProHead {
     text-align: center;
@@ -429,21 +368,21 @@ code {
     }
     center.Name {
       .MuiSkeleton-text {
-        max-width: 175px;
+        max-width: 15.625em;
         width: 12.5%;
-        min-width: 50px;
+        min-width: 3.125em;
       }
       h3 {
         font-family: Manga_Temple, cursive;
-        font-size: 1.5em;
+        // font-size: 1.5em;
         margin: 0;
       }
     }
     center.Title {
       .MuiSkeleton-text {
-        max-width: 250px;
+        max-width: 15.625em;
         width: 25%;
-        min-width: 100px;
+        min-width: 6.25em;
       }
       p {
         font-family: Manga_Temple, cursive;
@@ -454,8 +393,8 @@ code {
   div.ProBody {
     div.Lore,
     div.Skills {
-      border: 10px solid #e95f0d;
-      padding: 15px;
+      border: 0.625em solid #e95f0d;
+      padding: 1rem;
       border-radius: 0px 0px 0px 0px;
       border-top: 0;
       border-bottom: 0;
