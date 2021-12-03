@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className="logo">
         <img src={Logo} alt="logo" />
       </div>
-      <div className={navbar ? "mobileNav" : "mobileNav addAnimation"} onTransitionEnd={(e) => console.log(e)} onTransitionRun={() => console.log("here")}>
+      <div className={navbar ? "mobileNav" : "mobileNav addAnimation"} >
         <Link className="makeItColor" to="/">
           Home
         </Link>

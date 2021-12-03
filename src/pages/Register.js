@@ -6,9 +6,9 @@ import { useHistory, Link } from "react-router-dom";
 
 const Register = () => {
   let history = useHistory();
-  const username = useRef("")
-  const email = useRef("");
-  const password = useRef("");
+  const username = useRef(null)
+  const email = useRef(null);
+  const password = useRef(null);
   // const [faded, setfaded] = useState(false);
   const handleRegister = (email, password) => {
     console.log("email : " + email);
@@ -28,11 +28,11 @@ const Register = () => {
 
     <form className="Form" onSubmit={handleSubmit}>
       <h2>Register</h2>
-      <div className="Sign">
-        <Link className={history.location.pathname.replace("/", "") === "login" ? "login active" : "login"} to="/login">
+      <div className={history.location.pathname.replace("/", "") === "register" ? "Sign active" : "Sign"} >
+        <Link className={"login"} to="/login">
           Login
         </Link>
-        <Link className={history.location.pathname.replace("/", "") === "register" ? "register active" : "register"} to="/register">
+        <Link className={"register"} to="/register">
           Register
         </Link>
       </div>

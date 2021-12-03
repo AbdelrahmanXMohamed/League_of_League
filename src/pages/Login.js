@@ -12,9 +12,9 @@ import { Link, useHistory } from "react-router-dom";
 const Login = () => {
   let history = useHistory();
   history.location.pathname.replace("/", "")
-  const username = useRef("");
-  const password = useRef("");
-  const Login = useRef();
+  const username = useRef(null);
+  const password = useRef(null);
+  const Login = useRef(null);
   // const [faded, setfaded] = useState(false);
   useEffect(() => {
     return () => {
@@ -40,11 +40,11 @@ const Login = () => {
   return (
     <form className="Form" onSubmit={handleSubmit}>
       <h2>Login</h2>
-      <div className="Sign">
-        <Link ref={Login} className={history.location.pathname.replace("/", "") === "login" ? "login active" : "login"} to="/login">
+      <div className={history.location.pathname.replace("/", "") === "register" ? "Sign active" : "Sign"} >
+        <Link ref={Login} className="login" to="/login">
           Login
         </Link>
-        <Link className={history.location.pathname.replace("/", "") === "register" ? "register active" : "register"} to="/register">
+        <Link className="register" to="/register">
           Register
         </Link>
       </div>

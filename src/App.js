@@ -3,8 +3,8 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Error from "./pages/Error";
 import ChampProfile from "./pages/ChampProfile";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import LoginRegister from "./pages/LoginRegister";
+// import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import ForgetPassword from "./pages/ForgetPassword";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -24,10 +24,10 @@ function App() {
           <ChampProfile />
         </Route>
         <Route path="/login">
-          <Login />
+          <LoginRegister />
         </Route>
         <Route path="/register">
-          <Register />
+          <LoginRegister />
         </Route>
         <Route path="/forget_password">
           <ForgetPassword />
