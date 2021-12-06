@@ -25,6 +25,7 @@ def certain_chamption(request,id):
 
 @csrf_exempt
 def data_for_user(request):
+    print(json.loads(request.body))
     if request.method == "POST":
         body=json.loads(request.body)
         user = requests.get(f'https://{body["region"]}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{body["user"]}?api_key={api_key}')

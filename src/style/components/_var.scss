@@ -7,6 +7,7 @@ $InputBackground: #f6f6f669;
 $GradriantBackground1: #eb620d;
 $GradriantBackground2: -webkit-linear-gradient(to top, #eb620d, #f6f6f6);
 $GradriantBackground3: linear-gradient(to top, #eb620d, #f6f6f6);
+$HeightOfPageWithNavbar: calc(100vh - 2 * 4.6875em);
 
 @keyframes down {
   0% {
@@ -82,5 +83,13 @@ $GradriantBackground3: linear-gradient(to top, #eb620d, #f6f6f6);
     top: 380px;
     width: 13rem;
     height: 10rem;
+  }
+}
+@keyframes try {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
   }
 }

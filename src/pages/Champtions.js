@@ -27,7 +27,7 @@ const Champtions = () => {
 
           {champdata.map((champ, index) =>
 
-            <ChamptionsCard key={index} champ={champ} />
+            <ChamptionsCard key={index} champ={champ} index={index} />
 
           )}
 

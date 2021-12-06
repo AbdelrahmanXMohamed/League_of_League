@@ -4,10 +4,13 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   @media (min-width: 2000px) {
-    font-size: 24px;
+    font-size: 32px;
   }
   @media (min-width: 3000px) {
-    font-size: 32px;
+    font-size: 48px;
+  }
+  @media (min-width: 4000px) {
+    font-size: 40px;
   }
 }
 h1 {
