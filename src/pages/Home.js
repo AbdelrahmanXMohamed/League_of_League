@@ -1,21 +1,16 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import logo from "../resource/Logo.png";
-import axios from "axios";
-
+import PopUp from "./PopUp";
 const Home = () => {
   const Chamption = useRef(null)
+  const [popUp, setPopUp] = useState(false)
+  const handlePopUp = () => {
+    setPopUp(!popUp)
+  }
   const handleSubmit = (e) => {
-    e.preventDefault()
-    axios({
-      url: "http://127.0.0.1:5000/api/dataOfCertainUser",
-      method: "post",
-      data: {
-        region: "eun1",
-        user: Chamption.current.value,
-      }
-    })
-      .then(({ data }) => { console.log(data) })
-      .catch(err => console.log(err))
+    e.preventDefault();
+    handlePopUp();
+
   }
   return (
     <>
@@ -34,6 +29,11 @@ const Home = () => {
           </div>
         </div>
       </div>
+      {
+        popUp ? <PopUp Chamption={Chamption} handlePopUp={handlePopUp} /> : null
+      }
+
+
     </>
   );
 };

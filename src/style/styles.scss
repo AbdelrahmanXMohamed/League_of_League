@@ -12,6 +12,10 @@
   font-family: Manga_Temple;
   src: url(/src/resource/manga_temple/mangatb.ttf);
 }
+@font-face {
+  font-family: Arcane;
+  src: url(/src/resource/ArcaneNine-eZP1x.ttf);
+}
 * {
   margin: 0;
   padding: 0;
@@ -307,8 +311,7 @@
   .card {
     position: relative;
     margin: 1.25em;
-    max-width: 15.625em;
-    max-height: 23.75em;
+    max-width: 18.25em;
     overflow: hidden;
     box-shadow: 0 0.3125em 0.625em rgba(0, 0, 0, 0.8);
     transform-origin: center top;
@@ -355,8 +358,8 @@
       }
     }
     img {
-      width: 100%;
-      min-height: 100%;
+      max-width: inherit;
+      height: 100%;
     }
     &:hover,
     &:focus,
@@ -377,7 +380,12 @@
     margin: 0;
     .card {
       max-height: 13.875em;
-      max-width: 7.8125em;
+      max-width: 7.625em;
+      figcaption {
+        p {
+          font-size: 1.3em;
+        }
+      }
     }
   }
 }
@@ -463,6 +471,95 @@
         list-style-position: inside;
         line-height: 1.75;
       }
+    }
+  }
+}
+.UserCard {
+  box-shadow: 0px 0px 0.5em rgba(0, 0, 0, 0.25);
+  width: fit-content;
+  border-radius: 3.125em;
+  overflow: hidden;
+  margin-block: 1.25em;
+  .UserProfileImg {
+    position: relative;
+    img {
+      width: 18.75em;
+      height: 18.75em;
+    }
+    .UserProfileCaption {
+      font-size: 2em;
+      position: absolute;
+      top: 86%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      width: 100%;
+      text-align: center;
+    }
+  }
+  div {
+    p {
+      font-size: 1.25em;
+      padding-block: 0.25rem;
+      width: fit-content;
+      margin: 0 auto;
+    }
+  }
+}
+.PopUp {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  align-items: center;
+  background: whitesmoke;
+  .Header {
+    text-align: center;
+  }
+  .Card {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    flex-wrap: wrap;
+    min-height: $HeightOfPageWithNavbar;
+    .Tilt {
+      width: fit-content;
+      height: fit-content;
+
+      @media (max-width: 605px) {
+        flex-direction: column;
+        align-items: center;
+        min-height: $HeightOfPageWithNavbar;
+      }
+    }
+  }
+}
+.Error {
+  min-height: $HeightOfPageWithoutNavbar;
+  display: grid;
+  place-items: center;
+  position: relative;
+  img {
+    width: 100%;
+    height: 100vh;
+  }
+  .ErrorText {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 12em;
+    font-family: Arcane;
+
+    h1:first-child {
+      font-size: 10rem;
+    }
+    h1:last-child {
+      font-size: 4rem;
+      transform: rotate(90deg) translate(45%, 335px);
+      white-space: nowrap;
+      letter-spacing: 22px;
     }
   }
 }
