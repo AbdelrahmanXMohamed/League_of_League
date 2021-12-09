@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Error from "./pages/Error";
 import ChampProfile from "./pages/ChampProfile";
+import SummonerProfile from "./pages/SummonerProfile";
 import LoginRegister from "./pages/LoginRegister";
 // import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
@@ -19,6 +20,9 @@ function App() {
         </Route>
         <Route exact path="/champtions">
           <Champtions />
+        </Route>
+        <Route exact path="/summoner/:puuid">
+          <SummonerProfile />
         </Route>
         <Route path="/champtions/profile/:id">
           <ChampProfile />

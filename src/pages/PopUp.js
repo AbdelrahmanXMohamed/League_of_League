@@ -27,9 +27,24 @@ export default function PopUp({ Chamption, handlePopUp }) {
                 }
             })
             .catch(err => console.log(err))
+
         return () => console.log("unmounted")
     }, [Chamption])
-    console.log(users, notFound)
+    useEffect(() => {
+        if (users.length > 0) {
+            console.log(users[0].user.puuid)
+            axios({
+                url: `http://127.0.0.1:5000/api/matchesForUser/${users[0].user.puuid}`,
+                method: "get"
+            })
+                .then(({ data }) => {
+                    console.log(data)
+                })
+                .catch(err => console.log(err))
+        }
+        else { console.log("Loading") }
+    }, [users])
+
     return (
         <>
             <div className="PopUp">
@@ -45,7 +60,7 @@ export default function PopUp({ Chamption, handlePopUp }) {
                         :
                         <div className="Card">
                             {users.map(user =>
-                                <Tilt option={{ scale: 1 }} className="Tilt">
+                                <Tilt option={{ scale: 1, cursor: "pointer" }} className="Tilt">
                                     <UserCard key={user.user.id} version={version} user={user.user} platform={user.platform} />
                                 </Tilt>)}
                         </div>

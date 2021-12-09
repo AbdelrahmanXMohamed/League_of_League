@@ -527,7 +527,7 @@
     .Tilt {
       width: fit-content;
       height: fit-content;
-
+      cursor: pointer;
       @media (max-width: 605px) {
         flex-direction: column;
         align-items: center;
@@ -536,6 +536,7 @@
     }
   }
 }
+
 .Error {
   min-height: $HeightOfPageWithoutNavbar;
   display: grid;
