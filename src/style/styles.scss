@@ -547,18 +547,22 @@
     height: 100vh;
   }
   .ErrorText {
-    position: absolute;
-    top: 0;
-    left: 0;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
     font-size: 12em;
     font-family: Arcane;
-
+    @media (max-width: 1000px) {
+      font-size: 4em;
+    }
     h1:first-child {
-      font-size: 10rem;
+      // font-size: 10rem;
+      width: fit-content;
+      margin: 0 auto;
     }
     h1:last-child {
       font-size: 4rem;
-      transform: rotate(90deg) translate(45%, 335px);
+      // transform: rotate(90deg) translate(45%, 335px);
       white-space: nowrap;
       letter-spacing: 22px;
     }
