@@ -4,7 +4,7 @@ import Loading from "../components/Loading";
 import axios from 'axios';
 
 const Champtions = () => {
-  let [champdata, setChampdata] = useState([]);
+  let [champdata, setChampdata] = useState(() => []);
   useEffect(() => {
     axios.get("http://127.0.0.1:5000/api/currentChampions").then(
       function ({ data }) {
@@ -15,7 +15,7 @@ const Champtions = () => {
         })
         setChampdata(champtions)
       }
-    )
+    ).catch(err => console.log(err.message))
 
   }, []);
   return (

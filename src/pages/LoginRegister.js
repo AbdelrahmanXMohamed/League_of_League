@@ -7,16 +7,16 @@ export default function LoginRegister(props) {
     const username = useRef(null)
     const email = useRef(null);
     const password = useRef(null);
-    const [currentForm, setCurrentForm] = useState("login")
+    const [currentForm, setCurrentForm] = useState(() => history.location.pathname.replace("/", ""))
     useEffect(() => {
-        setCurrentForm(history.location.pathname.replace("/", ""));
+        setCurrentForm(() => history.location.pathname.replace("/", ""));
     }, [history.location.pathname])
 
     return (
         <>
             <div className="Forms">
                 <form className="Form" >
-                    <div className={currentForm === "register" ? "Sign active" : "Sign"} >
+                    <div className={currentForm === "register" ? "Sign-register" : "Sign-login"} >
                         <div className="login">
                             <Link to="/login">
                                 Login

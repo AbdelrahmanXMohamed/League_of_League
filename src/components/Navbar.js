@@ -4,19 +4,20 @@ import { Link } from "react-router-dom";
 import Logo from "../resource/Logo.png";
 
 const Navbar = () => {
-  let [navbar, setNavbar] = useState(true)
-
+  const [navbar, setNavbar] = useState(() => true)
+  const [start, setStart] = useState(() => true)
   const handleNavbar = () => {
     setNavbar(!navbar)
+    setStart(false)
   }
-
+  console.log(navbar)
   return (
-    <div className={navbar ? "Navbar" : "Navbar animationReflect"}>
+    <div className={navbar ? "Navbar" : "Navbar Toggled"}>
       <MenuIcon className="makeItColor Toggle" onClick={() => handleNavbar()} />
       <div className="logo">
         <img src={Logo} alt="logo" />
       </div>
-      <div className={navbar ? "mobileNav" : "mobileNav addAnimation"} >
+      <div className={start ? "start" : navbar ? "mobileNav" : "mobileNav addAnimation"} >
         <Link className="makeItColor" to="/">
           Home
         </Link>
@@ -31,7 +32,7 @@ const Navbar = () => {
         Login
       </Link>
 
-    </div>
+    </div >
   );
 };
 

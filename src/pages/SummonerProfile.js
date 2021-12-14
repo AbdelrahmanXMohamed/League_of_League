@@ -4,15 +4,16 @@ import axios from "axios";
 import { Skeleton } from "@material-ui/lab";
 const SummonerProfile = (props) => {
     let { puuid } = useParams();
-    let id = 'Aatrox'
+    let id = puuid;
     let [champdata, setChampdata] = useState(null);
     let [version, setVersion] = useState("");
+    console.log(puuid)
 
     useEffect(() => {
         axios.get(`http://127.0.0.1:5000/api/certainChamption/${id}`).then(function ({ data }) {
             setChampdata(data.data[`${id}`])
             setVersion(data.version)
-        })
+        }).catch(err => console.log(err.message))
     }, [id])
     return (
         <>
@@ -28,8 +29,6 @@ const SummonerProfile = (props) => {
                             <Skeleton
                                 animation="wave"
                                 variant="rect"
-                                width={"100%"}
-                                height={"100%"}
                                 className="Skeleton"
                             />
                         )}
@@ -44,8 +43,7 @@ const SummonerProfile = (props) => {
                             <Skeleton
                                 animation="wave"
                                 variant="circle"
-                                width={"100%"}
-                                height={"100%"}
+                                class="Skeleton"
                             />
                         )}
                     </div>
