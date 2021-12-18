@@ -1,14 +1,50 @@
-import React from "react";
-import Logo from "../resource/Logo.png";
+import React, { useRef } from "react";
 const ResetPassword = () => {
+  const password = useRef(null);
+  const handleForgetPassword = (password) => {
+    console.log("password : " + password);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const passwordData = password.current.value;
+    handleForgetPassword(passwordData);
+  };
   return (
     <>
-      <h1>ResetPassword Page</h1>
-      <div className="ResetPassword">
-        <div>
-          <img src={Logo} alt="logo" width="200px" />
-          <h1 style={{ textAlign: "center" }}>Coming Soon</h1>
-        </div>
+      <div className="Forms">
+        <form className="Form" onSubmit={handleSubmit}>
+          <div className="title">
+            <h3 >Reset Password</h3>
+          </div>
+          <div className="handleInput">
+            <div className="handleLogo">
+              <input
+                type="password"
+                name="password"
+                ref={password}
+                placeholder="Password"
+              />
+            </div>
+          </div>
+          <div className="handleInput">
+            <div className="handleLogo">
+              <input
+                type="password"
+                name="password"
+                ref={password}
+                placeholder="Confirm Password"
+              />
+            </div>
+          </div>
+          <div className="handleSubmit">
+            <input
+              type="submit"
+              className="Submit"
+              value="Reset Password"
+            />
+          </div>
+
+        </form>
       </div>
     </>
   );

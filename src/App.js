@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard";
 import ForgetPassword from "./pages/ForgetPassword";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./style/styles.css"
+import ResetPassword from "./pages/ResetPassword";
 function App() {
   return (
     <Router>
@@ -38,6 +39,9 @@ function App() {
         </Route>
         <Route path="/dashboard">
           <Dashboard />
+        </Route>
+        <Route path="/resetpassword">
+          <ResetPassword />
         </Route>
         <Route path="*">
           <Error />
