@@ -48,8 +48,11 @@ def data_for_user(request,user):
 def matches_for_user(request,puuid):
 
     regions=["AMERICAS","ASIA","EUROPE"]
-    user_region=""
+    platforms=["BR1","EUN1","EUW1","JP1","KR","LA1","LA2","NA1","OC1","TR1","RU"]
+
+    user_region,user_data="",""
     matches=[]
+    detailed_matches=[]
     for region in regions:
         match=requests.get(f"https://{region.lower()}.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start=0&count=5&api_key={api_key}")
         if len(match.json()) != 0:
@@ -59,8 +62,8 @@ def matches_for_user(request,puuid):
         match=requests.get(f"https://{user_region.lower()}.api.riotgames.com/lol/match/v5/matches/{match}?api_key={api_key}")
         match.json()["metadata"]['participants'].index(puuid)
         user_index=match.json()["metadata"]['participants'].index(puuid)
-        wantedkey=["champtionId",
-        "champtionName",
+        wantedkey=["championId",
+        "championName",
         "champLevel",
         "deaths",
         "doubleKills",
@@ -80,11 +83,14 @@ def matches_for_user(request,puuid):
         "win",
         "assists",
         "quadraKills"]
-        data=remove_fields(match.json()["info"]['participants'][user_index],wantedkey)
-        print(data)
-        
-
-    return JsonResponse({"match":matches},safe=False)
+        detailed_matches.append(remove_fields(match.json()["info"]['participants'][user_index],wantedkey))
+    for platform in platforms:
+        user_data=requests.get(f"https://{platform.lower()}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{puuid}?api_key={api_key}")
+        if user_data.status_code==200:
+            user_data=user_data.json()
+            break
+    print(detailed_matches)
+    return JsonResponse({"match":detailed_matches,"user_info":user_data,"version":current_version()},safe=False)
 
 class user_list(ListAPIView):
     queryset=User.objects.all()

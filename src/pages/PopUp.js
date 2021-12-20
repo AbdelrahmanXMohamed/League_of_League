@@ -17,7 +17,6 @@ export default function PopUp({ Chamption, handlePopUp }) {
             method: "get"
         })
             .then(({ data }) => {
-                console.log("here")
                 if (data.message) {
                     setNotFound(true)
                 }
@@ -44,7 +43,7 @@ export default function PopUp({ Chamption, handlePopUp }) {
         }
         else { console.log("Loading") }
     }, [users])
-
+    console.log(users)
     return (
         <>
             <div className="PopUp">

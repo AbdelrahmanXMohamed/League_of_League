@@ -3,31 +3,36 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Skeleton } from "@material-ui/lab";
 import WinLose from "../components/WinLose";
-// import logo from "../resource/Logo.png"
 const SummonerProfile = (props) => {
     let { puuid } = useParams();
-    let id = puuid;
-    let [champdata, setChampdata] = useState(null);
+    //   let id = puuid;
+    let [matchesdata, setMatchesdata] = useState([null, null, null, null, null]);
     let [version, setVersion] = useState("");
-    console.log(puuid)
+    let [user, setUser] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:5000/api/certainChamption/${id}`).then(function ({ data }) {
-            setChampdata(data.data[`${id}`])
-            setVersion(data.version)
-        }).catch(err => console.log(err.message))
-    }, [id])
+        axios({
+            url: `http://127.0.0.1:5000/api/matchesForUser/${puuid}`,
+            method: "get"
+        })
+            .then(({ data }) => {
+                setVersion(() => data.version)
+                setUser(() => data.user_info)
+                setMatchesdata(() => data.match)
+
+            })
+            .catch(err => console.log(err))
+
+    }, [puuid])
     return (
         <>
             <div className="SummonerProfile">
                 <div className="ProHead">
 
                     <div className="Profile">
-                        {Boolean(champdata) ? (
-                            <img
-                                src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${id}.png`}
-                                alt={id}
-                            />
+                        {Boolean(user) ? (
+
+                            < img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${user.profileIconId}.png`} alt={`${user.name}`} />
                         ) : (
                             <Skeleton
                                 animation="wave"
@@ -37,8 +42,8 @@ const SummonerProfile = (props) => {
                         )}
                     </div>
                     <center className="Name">
-                        {Boolean(champdata) ? (
-                            <h3>{champdata.name}</h3>
+                        {Boolean(user) ? (
+                            <h3>{user.name}</h3>
                         ) : (
                             <>
                                 <Skeleton animation="wave" variant="text" />
@@ -48,9 +53,9 @@ const SummonerProfile = (props) => {
 
                 </div>
                 <div className="WinLose">
-                    <WinLose winLose="Win" />
-                    <WinLose winLose="Lose" />
-                    <WinLose winLose="Loading" />
+
+                    {matchesdata.map((match, index) => <WinLose key={index} match={match} version={version} />)}
+
                 </div>
 
 
@@ -61,3 +66,8 @@ const SummonerProfile = (props) => {
 };
 
 export default SummonerProfile;
+/*
+                    <WinLose winLose="Win" />
+                    <WinLose winLose="Lose" />
+
+*/
