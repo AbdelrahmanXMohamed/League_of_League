@@ -1,11 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser,AbstractUser,PermissionsMixin,BaseUserManager
-
-class User(AbstractUser):
-    pass
-
-    def __str__(self):
-        return self.username
+from authentication.models import User
     
 class UUID(models.Model):
     UUID=models.CharField(max_length=78)

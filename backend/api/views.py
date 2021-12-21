@@ -2,13 +2,9 @@ import re
 from django.shortcuts import render
 from django.http import JsonResponse
 import requests
-
-from .serializers import UserSerializer
 from  .config import api_key
-from .models import UUID, User
-import json
+from .models import UUID
 from .utils import remove_fields
-from rest_framework.generics import ListAPIView
 # Create your views here.
 
 def test(request):
@@ -92,6 +88,3 @@ def matches_for_user(request,puuid):
     print(detailed_matches)
     return JsonResponse({"match":detailed_matches,"user_info":user_data,"version":current_version()},safe=False)
 
-class user_list(ListAPIView):
-    queryset=User.objects.all()
-    serializer_class=UserSerializer
