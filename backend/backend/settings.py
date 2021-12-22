@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 REST_FRAMEWORK={
     'NON_FIELD_ERRORS_KEY':'error',
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
+        'authentication.authentications.ExpiringTokenAuthentication',
     ),
     }
 
@@ -147,6 +147,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authentication.User'
 
+TOKEN_EXPIRED_AFTER_SECONDS=20000
 # DJOSER={
 #     'LOGIN_FIELD':'email',
 #     'ACTIVATION_URL':'activate/{uid}/{token}',

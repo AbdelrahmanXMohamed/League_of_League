@@ -31,6 +31,8 @@ class ExpiringTokenAuthentication(TokenAuthentication):
     If token is expired then it will be removed
     and new one with different key will be created
     """
+    model=MyToken
+
     def authenticate_credentials(self, key):
         try:
             token = MyToken.objects.get(key = key)

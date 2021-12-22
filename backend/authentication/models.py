@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin,BaseUserManager
-from rest_framework.authtoken.models import Token
-
+import binascii
+import os
+from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 
@@ -43,11 +44,54 @@ class User(AbstractBaseUser,PermissionsMixin):
     
     def __str__(self):
         return self.email
-    def tokens(self):
-        return ""
+    def tokens(self,remember_me=False):
+        token = MyToken.objects.create(user=self)
+        token.is_remember_me=remember_me
+        token.save()
+        return str(token.key)
 
-class MyToken(Token):
+  
 
+class MyToken(models.Model):
+    """
+    The default authorization token model.
+    """
+    key = models.CharField(_("Key"), max_length=40, primary_key=True)
+
+    user = models.ForeignKey(
+        User, related_name='user',
+        on_delete=models.CASCADE, verbose_name="user"
+    )
+    created = models.DateTimeField(_("Created"), auto_now_add=True)
+    
     is_remember_me=models.BooleanField(default=False)
 
-    
+    class Meta:
+        verbose_name = _("Token")
+        verbose_name_plural = _("Tokens")
+
+    def save(self, *args, **kwargs):
+        if not self.key:
+            self.key = self.generate_key()
+        return super(MyToken, self).save(*args, **kwargs)
+
+    def generate_key(self):
+        return binascii.hexlify(os.urandom(20)).decode()
+
+    def __str__(self):
+        return self.key
+
+class Verify(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    key= models.CharField(max_length=40,primary_key=True)
+
+    def save(self, *args, **kwargs):
+        if not self.key:
+            self.key = self.generate_key()
+        return super(Verify, self).save(*args, **kwargs)
+
+    def generate_key(self):
+        return binascii.hexlify(os.urandom(20)).decode()
+
+    def __str__(self):
+        return self.key
