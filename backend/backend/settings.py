@@ -10,13 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
 from api.config import emailpassword,hostemail
+from datetime import timedelta
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -126,11 +126,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'build/static')
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -147,22 +150,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authentication.User'
 
-TOKEN_EXPIRED_AFTER_SECONDS=20000
-# DJOSER={
-#     'LOGIN_FIELD':'email',
-#     'ACTIVATION_URL':'activate/{uid}/{token}',
-#     'SEND_CONFIRMATION_EMAIL': True,
-#     'SEND_ACTIVATION_EMAIL':True,
-#     'USER_CREATE_PASSWORD_RETYPE':True,
-#     'USERNAME_CHANGED_EMAIL_CONFIRMATION':True,
-#     'PASSWORD_CHANGED_EMAIL_CONFIRMATION':True,
-#     'SEND_CONFIRMATION_EMAIL':True,
-#     'SET_PASSWORD_RETYPE':True,
-#     'PASSWORD_RESET_CONFIRM_URL':'password/reset/confirm/{uid}/{token}',
-#     'EMAIL_RESET_CONFIRM_URL':'email/reset/confirm/{uid}/{token}',
-#     'SERIALIZERS':{
-#         'user_create':'api.serializers.UserCreateSerializer',
-#         'user':'api.serializers.UserCreateSerializer',
-#         'user_delete':'djoser.serializers.UserDeleteSerializer'
-#     }
-# }
+TOKEN_EXPIRED_AFTER_SECONDS=timedelta(days=1)

@@ -1,9 +1,8 @@
 from django.db import models
-from django.db.models import fields
-from  rest_framework import serializers
-from  rest_framework.exceptions import AuthenticationFailed
+from rest_framework import serializers
+from rest_framework.exceptions import AuthenticationFailed
 from .models import User
-from  django.contrib import auth
+from django.contrib import auth
 
 class RegisterSerailizer(serializers.ModelSerializer):
     password=serializers.CharField(max_length=68,min_length=6,write_only=True)
@@ -49,5 +48,6 @@ class LoginSerailizer(serializers.ModelSerializer):
         return {
             'email':user.email,'username':user.username,'token':user.tokens(remember_me)
         }
-class LogoutSerailizer(serializers.ModelSerializer):
+
+class ResetPasswordSerailizer(serializers.ModelSerializer):
     pass

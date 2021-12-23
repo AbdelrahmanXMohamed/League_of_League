@@ -1,12 +1,10 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
-
+import Register from '../components/Register';
+import Login from "../components/Login"
 export default function LoginRegister(props) {
     let history = useHistory();
     history.location.pathname.replace("/", "")
-    const username = useRef(null)
-    const email = useRef(null);
-    const password = useRef(null);
     const [currentForm, setCurrentForm] = useState(() => history.location.pathname.replace("/", ""))
     useEffect(() => {
         setCurrentForm(() => history.location.pathname.replace("/", ""));
@@ -15,7 +13,7 @@ export default function LoginRegister(props) {
     return (
         <>
             <div className="Forms">
-                <form className="Form" >
+                <div className="Form">
                     <div className={currentForm === "register" ? "Sign-register" : "Sign-login"} >
                         <div className="login">
                             <Link to="/login">
@@ -28,30 +26,12 @@ export default function LoginRegister(props) {
                             </Link>
                         </div>
                     </div>
-                    {history.location.pathname.replace("/", "") === "register" ? <>
-                        <input type="text" ref={username} name="username" placeholder="Username" />
-                        <input type="email" ref={email} name="email" placeholder="E-mail" />
-                        <input type="password" ref={password} name="password" placeholder="Password" />
-                        <input type="password" ref={password} name="conPassword" placeholder="Confirm Password" />
-
-                        <input type="submit" value="Register" />
-
-                        <p>Already a memeber <Link to="/login" style={{ fontSize: "inherit" }}>Login ?</Link></p>
-                    </> : <>
-                        <input type="text" ref={username} name="username" placeholder="Username" />
-                        <input type="password" ref={password} name="password" placeholder="Password" />
-                        <div className="remember_me">
-                            <input type="checkbox" id="Remember_me" />
-                            <label> Remember me</label>
-                        </div>
-                        <Link className="right" to="/forget_password">Forget Password ?</Link>
-                        <input type="submit" value="Login" />
-
-                        <p>Not a memeber <Link to="/register" style={{ fontSize: "inherit" }}>Register Now ?</Link></p>
-                    </>
+                    {history.location.pathname.replace("/", "") === "register" ?
+                        <Register />
+                        : <Login />
                     }
 
-                </form>
+                </div>
             </div>
         </>
     );

@@ -3,11 +3,11 @@ from django.shortcuts import render
 from rest_framework import generics,status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from .serializers import RegisterSerailizer,LoginSerailizer,LogoutSerailizer
+from .serializers import RegisterSerailizer,LoginSerailizer
 from django.contrib.sites.shortcuts import get_current_site
 from .utils import Util
 from django.urls import reverse
-from  .models import  Verify,User
+from .models import  MyToken, Verify,User
 # Create your views here.
 
 class RegisterView(generics.GenericAPIView):
@@ -42,8 +42,14 @@ class LoginAPIView(generics.GenericAPIView):
         return Response(serializer.data,status=status.HTTP_200_OK)
 
 class LogoutAPIView(generics.GenericAPIView):
-    serializer_class=LogoutSerailizer
     premission_classes=(IsAuthenticated,)
+    def get(self,request):
+        try:
+            token=MyToken.objects.get(key=request.headers.get('token'))
+            token.delete()
+        except MyToken.DoesNotExist:
+            return Response('Token does not exist', status=status.HTTP_400_BAD_REQUEST)
+        return Response('Logout successfully',status=status.HTTP_200_OK)
 
 class VerifyEmail(generics.GenericAPIView):
     def get(self,request):
@@ -51,7 +57,7 @@ class VerifyEmail(generics.GenericAPIView):
         try:
             verify=Verify.objects.filter(key=token)
         except Verify.DoesNotExist:
-            raise TypeError("Token does not exist")
+            return Response('Token does not exist', status=status.HTTP_400_BAD_REQUEST)
         try:
             user=User.objects.get(id=verify[0].user.id)
             if user.is_verified:
@@ -63,3 +69,8 @@ class VerifyEmail(generics.GenericAPIView):
             raise TypeError("User does not exist")
         
         return Response({"email":"Successfully Activated"},status=status.HTTP_200_OK)
+
+class ForgetPasswordView(generics.GenericAPIView):
+    pass
+class ResetPassowordView(generics.GenericAPIView):
+    pass

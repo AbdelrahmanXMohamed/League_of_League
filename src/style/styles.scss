@@ -143,89 +143,94 @@
   display: grid;
   place-items: center;
   height: $HeightOfPageWithoutNavbar;
-  form.Form {
+  .Sign-register,
+  .Sign-login {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    // width: 100%;
+    // position: relative;
+    width: 68.5%;
+    position: absolute;
+    top: 1.5rem;
+    @media (max-width: 550px) {
+      width: 14rem;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      background-color: $CommonColor1;
+      border-radius: 0.25rem;
+      transition: 1s;
+      .login {
+        color: white;
+      }
+    }
+    .login,
+    .register {
+      position: relative;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1875rem;
+      padding-block: 1em;
+      transition: 1s;
+    }
+    a {
+      text-decoration: none;
+      padding: 0.5em;
+      font-size: 1em;
+      transition: 1s;
+    }
+    .login {
+      background: linear-gradient(90deg, black 50%, white 50%);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200%;
+      background-position: top right;
+    }
+    .register {
+      background: linear-gradient(-90deg, black 50%, white 50%);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200%;
+
+      background-position: top right;
+    }
+  }
+  .Sign-register::before {
+    background-color: $CommonColor1;
+    border-radius: 0.25rem;
+    transform: translateX(100%);
+    transition: 1s;
+  }
+  .Sign-register {
+    .register {
+      background-position: top left;
+    }
+    .login {
+      background-position: top left;
+    }
+  }
+
+  .Form {
     display: flex;
-    justify-content: space-evenly;
     flex-direction: column;
     box-shadow: 0px 0 1.1875em rgba(0, 0, 0, 0.2);
     padding: 3rem 5rem;
     padding-top: calc(3rem + 54px);
     background-color: whitesmoke;
-    margin: 0 auto;
-    width: 31.75rem;
-    min-height: 30.75rem;
+    justify-content: center;
+    width: 31rem;
     position: relative;
-    .Sign-register,
-    .Sign-login {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      text-align: center;
-      // width: 100%;
-      // position: relative;
-      width: 68.5%;
-      position: absolute;
-      top: 1.5rem;
-      @media (max-width: 550px) {
-        width: 14rem;
-      }
-      &::before {
-        content: "";
-        position: absolute;
-        width: 50%;
-        height: 100%;
-        background-color: $CommonColor1;
-        border-radius: 0.25rem;
-        transition: 1s;
-        .login {
-          color: white;
-        }
-      }
-      .login,
-      .register {
-        position: relative;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 1.2rem;
-        padding: 1rem;
-        transition: 1s;
-      }
-      a {
-        text-decoration: none;
-        font-weight: 700;
-        padding: 0.5em;
-        transition: 1s;
-      }
-      .login {
-        background: linear-gradient(90deg, black 50%, white 50%);
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-size: 200%;
-        background-position: top right;
-      }
-      .register {
-        background: linear-gradient(-90deg, black 50%, white 50%);
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-size: 200%;
-
-        background-position: top right;
-      }
+    form {
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+      width: 100%;
+      min-height: 25rem;
     }
-    .Sign-register::before {
-      background-color: $CommonColor1;
-      border-radius: 0.25rem;
-      transform: translateX(100%);
-      transition: 1s;
-    }
-    .Sign-register {
-      .register {
-        background-position: top left;
-      }
-      .login {
-        background-position: top left;
-      }
-    }
-
     .title {
       background-color: $CommonColor1;
       border-radius: 0.25rem;
@@ -240,7 +245,6 @@
       border-radius: 0.25rem;
       border: 0.0625rem solid black;
       outline: none;
-      width: 100%;
     }
     input[type="password"],
     input[type="text"],
@@ -253,7 +257,7 @@
     }
     .remember_me {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       label {
         margin-left: 5px;
       }
@@ -269,6 +273,15 @@
       width: 100%;
       .right {
         text-align: right;
+      }
+      @media (max-width: 550px) {
+        grid-template-columns: 1fr;
+        justify-content: space-around;
+        min-height: 60px;
+        align-items: center;
+        .right {
+          text-align: unset;
+        }
       }
       #Remember_me {
         width: 0.875rem;
