@@ -15,27 +15,23 @@ const ForgetPassword = () => {
   return (
     <>
       <div className="Forms">
-        <form className="Form" onSubmit={handleSubmit}>
+        <form className="Form ForgetPassword" onSubmit={handleSubmit}>
           <div className="title">
             <h3 >Forget Password</h3>
           </div>
           <div className="handleInput">
-            <div className="handleLogo">
-              <input
-                type="text"
-                name="email"
-                ref={email}
-                placeholder="Email"
-              />
-            </div>
-          </div>
-          <div className="handleSubmit">
             <input
-              type="submit"
-              className="Submit"
-              value="Recover Password"
+              type="text"
+              name="email"
+              ref={email}
+              placeholder="Email"
             />
           </div>
+          <input
+            type="submit"
+            className="Submit"
+            value="Recover Password"
+          />
 
           <p>
             Not a memeber <Link to="/register" style={{ fontSize: "inherit" }}>Register Now ?</Link>

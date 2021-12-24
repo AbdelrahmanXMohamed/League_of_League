@@ -17,6 +17,7 @@ class RegisterSerailizer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'The username should only contain alphanumeric characters'
             )
+
         return attrs
     
     def create(self,validated_data):
@@ -43,7 +44,7 @@ class LoginSerailizer(serializers.ModelSerializer):
             raise AuthenticationFailed('Your Account is Banned')
 
         if not user.is_verified:
-            raise AuthenticationFailed("Your Account is not Verified")
+            raise AuthenticationFailed({"message":"Your Account is not Verified"})
 
         return {
             'email':user.email,'username':user.username,'token':user.tokens(remember_me)

@@ -11,6 +11,7 @@ import ForgetPassword from "./pages/ForgetPassword";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./style/styles.css"
 import ResetPassword from "./pages/ResetPassword";
+import ActivateAccount from "./pages/ActivateAccount";
 function App() {
   return (
     <Router>
@@ -33,6 +34,9 @@ function App() {
         </Route>
         <Route path="/register">
           <LoginRegister />
+        </Route>
+        <Route path="/activate/:token">
+          <ActivateAccount />
         </Route>
         <Route path="/forget_password">
           <ForgetPassword />

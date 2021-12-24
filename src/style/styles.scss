@@ -224,6 +224,10 @@
     justify-content: center;
     width: 31rem;
     position: relative;
+    &.ForgetPassword {
+      justify-content: space-between;
+      min-height: 23rem;
+    }
     form {
       display: flex;
       justify-content: space-evenly;
@@ -238,6 +242,12 @@
       color: white;
       h3 {
         text-align: center;
+      }
+    }
+    .handleInput {
+      width: 100%;
+      input {
+        width: 100%;
       }
     }
     input {
@@ -381,7 +391,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 1rem;
+      padding-block: 1rem;
       padding-bottom: 0.5rem;
       background: rgba(0, 0, 0, 0.575);
       color: rgba(255, 255, 255, 0.808);
@@ -799,5 +809,15 @@
       background-color: $color;
     }
     background-color: rgba($color, $alpha: 0.5);
+  }
+}
+.ActivateAccount {
+  display: grid;
+  min-height: $HeightOfPageWithoutNavbar;
+  place-items: center;
+  .message {
+    width: 75%;
+    background-color: red;
+    padding: 1rem;
   }
 }

@@ -10,7 +10,6 @@ const Navbar = () => {
     setNavbar(!navbar)
     setStart(false)
   }
-  console.log(navbar)
   return (
     <div className={navbar ? "Navbar" : "Navbar Toggled"}>
       <MenuIcon className="makeItColor Toggle" onClick={() => handleNavbar()} />

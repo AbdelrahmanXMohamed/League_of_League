@@ -1,16 +1,37 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import toast from 'react-hot-toast';
 
 const Register = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [error, setError] = useState(() => false)
+  const fetchData = async (data) => {
+    const response = await axios({
+      url: `http://127.0.0.1:5000/auth/register/`,
+      method: "post",
+      data
+    })
+    return response;
+  };
   const onSubmit = (data) => {
-    console.log(data);
     if (data.password !== data.repassword) {
       setError(() => true);
       return
     }
+
+    delete data['repassword'];
+    toast.promise(fetchData(data), {
+      loading: 'Loading',
+      success: (data) => data.data.message,
+      error: (err) =>
+      (err.response.data.email && err.response.data.email.map(message => message)
+        || (err.response.data.password && err.response.data.password.map(message => message))
+        || (err.response.data.username && err.response.data.username.map(message => message)
+        ))
+
+    });
     setError(() => false);
 
 
