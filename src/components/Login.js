@@ -11,17 +11,16 @@ export default function Login() {
             url: `http://127.0.0.1:5000/auth/login/`,
             method: "post",
             data
-        }).then(({ data }) => {
-            console.log(data)
-        }
-        )
+        })
         return response;
     };
     const onSubmit = (data) => {
         toast.promise(fetchData(data)
             , {
                 loading: 'Loading',
-                success: (data) => "Welcome," + data.data.username,
+                success: (data) =>
+                    `Welcome, ${data.data.username}`
+                ,
                 error: (err) =>
                     (err.response.data.message)
 

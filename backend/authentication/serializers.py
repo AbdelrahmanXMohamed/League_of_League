@@ -38,10 +38,10 @@ class LoginSerailizer(serializers.ModelSerializer):
         remember_me=attrs.get('remember_me','') or False
         user=auth.authenticate(email=email,password=password)
         if not user:
-            raise AuthenticationFailed('Invalid Credential, Try Again')
+            raise AuthenticationFailed({'message':'Invalid Credential, Try Again'})
         
         if not user.is_active:
-            raise AuthenticationFailed('Your Account is Banned')
+            raise AuthenticationFailed({'message':'Your Account is Banned'})
 
         if not user.is_verified:
             raise AuthenticationFailed({"message":"Your Account is not Verified"})

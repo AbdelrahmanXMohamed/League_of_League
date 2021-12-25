@@ -66,7 +66,8 @@ ROOT_URLCONF = 'backend.urls'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-FRONTEND_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#__file__
+FRONTEND_DIR = os.path.dirname(os.path.dirname(os.path.abspath("./league_of_legends")))
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [

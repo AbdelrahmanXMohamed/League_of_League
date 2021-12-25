@@ -817,7 +817,21 @@
   place-items: center;
   .message {
     width: 75%;
-    background-color: red;
-    padding: 1rem;
+    padding-block: 0.5em;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 2rem;
+    @media (max-width: 450px) {
+      font-size: 1rem;
+    }
+    &.success {
+      background-color: #0eff0e;
+    }
+    &.failed {
+      background-color: red;
+    }
+    p {
+      font-size: inherit;
+    }
   }
 }

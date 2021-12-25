@@ -3,24 +3,21 @@ import axios from 'axios'
 import { useParams } from "react-router-dom";
 export default function ActivateAccount() {
     let { token } = useParams();
-    const [message, setMessage] = useState(() => "")
+    const [message, setMessage] = useState(() => ({ message: "", style: "" }))
     useEffect(() => {
         axios({
             url: `http://127.0.0.1:5000/auth/email-verify/?token=${token}`,
             method: "get"
         }).then(({ data }) => {
-            console.log(data)
-
-
-            setMessage(() => data.message)
-        })
-
+            setMessage(() => ({ message: data.message, style: "success" }))
+        }).catch(err => setMessage(() => ({ message: err.response.data.message, style: "failed" }))
+        )
     }
         , [])
     return (
         <div className="ActivateAccount">
-            <div className="message">
-                <p>{message}</p>
+            <div className={`message ${message.style}`} >
+                <p>{message.message}</p>
             </div></div>
     )
 }

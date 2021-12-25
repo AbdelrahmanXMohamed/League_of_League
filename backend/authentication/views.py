@@ -55,12 +55,14 @@ class LogoutAPIView(generics.GenericAPIView):
 class VerifyEmail(generics.GenericAPIView):
     def get(self,request):
         token=request.GET.get('token')
+        print(token)
+        if not Verify.objects.filter(key=token).exists():
+            return Response({"message":'Token does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+
+        verify=Verify.objects.get(key=token)
+        
         try:
-            verify=Verify.objects.filter(key=token)
-        except Verify.DoesNotExist:
-            return Response('Token does not exist', status=status.HTTP_400_BAD_REQUEST)
-        try:
-            user=User.objects.get(id=verify[0].user.id)
+            user=User.objects.get(id=verify.user.id)
             if user.is_verified:
                 return Response({"message":"Already Activated"},status=status.HTTP_409_CONFLICT)
             user.is_verified=True
