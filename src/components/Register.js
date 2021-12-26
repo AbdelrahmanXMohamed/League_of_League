@@ -26,11 +26,9 @@ const Register = () => {
       loading: 'Loading',
       success: (data) => data.data.message,
       error: (err) =>
-      (err.response.data.email && err.response.data.email.map(message => message)
-        || (err.response.data.password && err.response.data.password.map(message => message))
-        || (err.response.data.username && err.response.data.username.map(message => message)
-        ))
-
+        (err.response.data.email && err.response.data.email.map(message => message)) ||
+        (err.response.data.password && err.response.data.password.map(message => message)) ||
+        (err.response.data.username && err.response.data.username.map(message => message))
     });
     setError(() => false);
 

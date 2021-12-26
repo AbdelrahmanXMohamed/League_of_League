@@ -1,31 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import toast from 'react-hot-toast';
+import { loginUser, useAuthState, useAuthDispatch } from '../context/AuthContext/AuthIndex'
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const fetchData = async (data) => {
-        const response = await axios({
-            url: `http://127.0.0.1:5000/auth/login/`,
-            method: "post",
-            data
-        })
-        return response;
-    };
-    const onSubmit = (data) => {
-        toast.promise(fetchData(data)
-            , {
-                loading: 'Loading',
-                success: (data) =>
-                    `Welcome, ${data.data.username}`
-                ,
-                error: (err) =>
-                    (err.response.data.message)
+    const dispatch = useAuthDispatch()
+    let history = useHistory();
+    const { loading, errorMessage } = useAuthState()
+    const onSubmit = async (data) => {
+        const toastLoading = toast.loading("Sending data ...")
 
-            });
+        let payload = { email: data.email, password: data.password, remember_me: data.remember_me }
 
+        try {
+            let response = await loginUser(dispatch, payload);
+            toast.dismiss(toastLoading);
+            if (response.email)
+                history.push('/');
+            else
+                toast.error(response || errorMessage);
+
+        } catch (error) {
+            console.log(error)
+            toast.dismiss(toastLoading);
+            toast.error(error || errorMessage);
+        }
     }
     return (
         <>
@@ -42,7 +44,7 @@ export default function Login() {
                     </div>
                     <Link className="right" to="/forget_password">Forget Password ?</Link>
                 </div>
-                <input type="submit" value="Login" />
+                <input type="submit" value="Login" disabled={loading} />
 
                 <p>Not a memeber <Link to="/register" style={{ fontSize: "inherit" }}>Register Now ?</Link></p>
             </form>

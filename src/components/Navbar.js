@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
 import Logo from "../resource/Logo.png";
+import { useAuthState, useAuthDispatch, logout } from '../context/AuthContext/AuthIndex'
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(() => true)
   const [start, setStart] = useState(() => true)
+  const { token } = useAuthState()
+  const dispatch = useAuthDispatch()
   const handleNavbar = () => {
     setNavbar(!navbar)
     setStart(false)
+  }
+  const handleLogout = () => {
+    logout(dispatch);
   }
   return (
     <div className={navbar ? "Navbar" : "Navbar Toggled"}>
@@ -27,10 +33,14 @@ const Navbar = () => {
           Dashboard
         </Link>
       </div>
-      <Link to="/login" className="makeItColor right">
-        Login
-      </Link>
-
+      {token ?
+        <span onClick={handleLogout} className="makeItColor right">
+          Logout
+        </span> :
+        <Link to="/login" className="makeItColor right">
+          Login
+        </Link>
+      }
     </div >
   );
 };
