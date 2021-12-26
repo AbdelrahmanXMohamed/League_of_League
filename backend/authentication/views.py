@@ -45,12 +45,15 @@ class LoginAPIView(generics.GenericAPIView):
 class LogoutAPIView(generics.GenericAPIView):
     premission_classes=(IsAuthenticated,)
     def get(self,request):
+        print(request.META)
+        print(request.META.get("HTTP_AUTHORIZATION",''))
+
         try:
-            token=MyToken.objects.get(key=request.headers.get('token'))
+            token=MyToken.objects.get(key=request.headers.get('Token'))
             token.delete()
         except MyToken.DoesNotExist:
             return Response('Token does not exist', status=status.HTTP_400_BAD_REQUEST)
-        return Response('Logout successfully',status=status.HTTP_200_OK)
+        return Response({'message':'Logout successfully'},status=status.HTTP_200_OK)
 
 class VerifyEmail(generics.GenericAPIView):
     def get(self,request):
