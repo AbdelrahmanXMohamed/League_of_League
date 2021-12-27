@@ -13,13 +13,14 @@ export async function loginUser(dispatch, loginPayload) {
             ,
             ...requestOptions
         });
+        console.log(response)
         let data = response.data;
         if (data.email) {
             dispatch({ type: 'LOGIN_SUCCESS', payload: data });
             localStorage.setItem('currentUser', JSON.stringify(data));
             return data
         }
-        console.log(data)
+
         dispatch({ type: 'LOGIN_ERROR', error: data.errors[0] });
         return
     } catch (error) {

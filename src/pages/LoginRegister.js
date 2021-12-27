@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast';
 
 export default function LoginRegister(props) {
     let history = useHistory();
+
     history.location.pathname.replace("/", "")
     const [currentForm, setCurrentForm] = useState(() => history.location.pathname.replace("/", ""))
     useEffect(() => {

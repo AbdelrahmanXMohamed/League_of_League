@@ -47,7 +47,7 @@ function App() {
           <Route path="/dashboard">
             <Dashboard />
           </Route>
-          <Route path="/resetpassword">
+          <Route path="/reset_password/:uidb64/:token">
             <ResetPassword />
           </Route>
           <Route path="*">

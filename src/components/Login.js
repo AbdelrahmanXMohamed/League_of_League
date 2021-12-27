@@ -9,7 +9,7 @@ export default function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const dispatch = useAuthDispatch()
     let history = useHistory();
-    const { loading, errorMessage } = useAuthState()
+    const { loading } = useAuthState()
     const onSubmit = async (data) => {
         const toastLoading = toast.loading("Sending data ...")
 
@@ -17,18 +17,15 @@ export default function Login() {
 
         try {
             let response = await loginUser(dispatch, payload);
+            if (!response.email) throw response;
             toast.dismiss(toastLoading);
-            if (response.email)
-                history.push('/');
-            else
-                toast.error(response || errorMessage);
-
-        } catch (error) {
-            console.log(error)
+            history.push('/');
+        } catch (err) {
             toast.dismiss(toastLoading);
-            toast.error(error || errorMessage);
+            toast.error(err);
         }
     }
+
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>

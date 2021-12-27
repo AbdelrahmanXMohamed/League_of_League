@@ -1,21 +1,29 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import axios from 'axios'
+import toast, { Toaster } from "react-hot-toast";
 
 const ForgetPassword = () => {
-  const email = useRef(null);
-  const handleForgetPassword = (email) => {
-    console.log("email : " + email);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const emailData = email.current.value;
-    handleForgetPassword(emailData);
+  const { register, handleSubmit, formState: { errors } } = useForm()
+
+  const onSubmit = async (data) => {
+    const checking = toast.loading('Checking...')
+    let response = await axios({
+      url: "http://127.0.0.1:5000/auth/forget-password/",
+      method: "post",
+      data
+    })
+    if (response.status === 200) { toast.dismiss(checking); toast.success(response.data.message) }
+    else { toast.dismiss(checking); toast.error(response.data.message) }
   };
 
   return (
     <>
+      <Toaster position="top-center" />
+
       <div className="Forms">
-        <form className="Form ForgetPassword" onSubmit={handleSubmit}>
+        <form className="Form ForgetPassword" onSubmit={handleSubmit(onSubmit)}>
           <div className="title">
             <h3 >Forget Password</h3>
           </div>
@@ -23,9 +31,11 @@ const ForgetPassword = () => {
             <input
               type="text"
               name="email"
-              ref={email}
+              {...register("email", { required: true })}
               placeholder="Email"
+
             />
+            {errors.email?.type === 'required' && <span>This field is required</span>}
           </div>
           <input
             type="submit"

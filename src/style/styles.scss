@@ -227,6 +227,9 @@
     &.ForgetPassword {
       justify-content: space-between;
       min-height: 23rem;
+      @media (max-width: 550px) {
+        min-height: 17rem;
+      }
     }
     form {
       display: flex;
@@ -240,6 +243,14 @@
       border-radius: 0.25rem;
       padding: 1rem;
       color: white;
+      position: absolute;
+      top: 1rem;
+      width: calc(100% - 10rem);
+      @media (max-width: 550px) {
+        position: absolute;
+        top: 1rem;
+        width: calc(100% - 5rem);
+      }
       h3 {
         text-align: center;
       }
@@ -306,6 +317,11 @@
       padding: 1.5rem 2.5rem;
       padding-top: calc(1.5rem + 54px);
       width: 19rem;
+    }
+  }
+  span {
+    @media (max-width: 550px) {
+      font-size: 0.75rem;
     }
   }
 }
