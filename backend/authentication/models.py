@@ -27,7 +27,6 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
-
 class User(AbstractBaseUser,PermissionsMixin):
     username=models.CharField(max_length=255,unique=True,db_index=True)
     email=models.EmailField(max_length=255,unique=True,db_index=True)
@@ -49,8 +48,6 @@ class User(AbstractBaseUser,PermissionsMixin):
         token.is_remember_me=remember_me
         token.save()
         return str(token.key)
-
-  
 
 class MyToken(models.Model):
     """

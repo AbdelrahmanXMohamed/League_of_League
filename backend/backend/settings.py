@@ -152,4 +152,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authentication.User'
 
-TOKEN_EXPIRED_AFTER_SECONDS=timedelta(days=1)
+TOKEN_EXPIRED_AFTER_SECONDS= 86400

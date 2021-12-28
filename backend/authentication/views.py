@@ -8,9 +8,12 @@ from django.contrib.sites.shortcuts import get_current_site
 from .utils import Util
 from django.urls import reverse
 from .models import  MyToken, Verify,User
+from django.contrib.auth import logout
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.utils.encoding import smart_str,force_str, smart_bytes ,DjangoUnicodeDecodeError
 from django.utils.http import  urlsafe_base64_encode,urlsafe_base64_decode
+from .authentications import token_expire_handler, expires_in
+
 
 # Create your views here.
 
@@ -38,24 +41,28 @@ class RegisterView(generics.GenericAPIView):
         Util.send_email(data)
         return Response({'message':'Created successfully please check your Email to verify'},status=status.HTTP_201_CREATED)
 
+class ValidLoginVeiw(generics.GenericAPIView):
+    premission_classes=(IsAuthenticated,)
+    def get(self,request):
+        if request.auth:
+            return Response({'expires_in':expires_in(request.auth)},status=status.HTTP_200_OK)
+
 class LoginAPIView(generics.GenericAPIView):
     serializer_class=LoginSerailizer
 
     def post(self,request):
         serializer=self.serializer_class(data=request.data)
+        
         serializer.is_valid(raise_exception=True)
-        return Response(serializer.data,status=status.HTTP_200_OK)
+        return Response({'data':serializer.data,'expires':expires_in(MyToken.objects.get(key=serializer.data['token']))},status=status.HTTP_200_OK)
 
 class LogoutAPIView(generics.GenericAPIView):
     premission_classes=(IsAuthenticated,)
     def get(self,request):
-        request.META.get("HTTP_AUTHORIZATION",'')
-        try:
-            token=MyToken.objects.get(key=request.META.get("HTTP_AUTHORIZATION",''))
-            token.delete()
-        except MyToken.DoesNotExist:
-            return Response('Token does not exist', status=status.HTTP_400_BAD_REQUEST)
-        return Response({'message':'Logout successfully'},status=status.HTTP_200_OK)
+        if request.user.is_authenticated:
+            request.auth.delete()
+            logout(request)
+            return Response({'message':'Logout successfully'},status=status.HTTP_200_OK)
 
 class VerifyEmail(generics.GenericAPIView):
     def get(self,request):
@@ -87,7 +94,7 @@ class ForgetPasswordView(generics.GenericAPIView):
         uidb64=urlsafe_base64_encode(smart_bytes(user.id)) 
         token=PasswordResetTokenGenerator().make_token(user)
         current_site=get_current_site(request).domain
-        absurl='http://'+current_site+"/reset-password/"+uidb64+"/"+str(token)
+        absurl='http://'+current_site+"/check_reset_password/"+uidb64+"/"+str(token)
         email_body=f"Hi {user.username} \nuse Link below to reset your password \n{absurl}"
         data={'email_body': email_body,'email_subject':'Reset your password','email_to':email}
         Util.send_email(data)
@@ -95,8 +102,9 @@ class ForgetPasswordView(generics.GenericAPIView):
 
 class CheckValidUserView(generics.GenericAPIView):
     def get(self,request,uidb64,token):
-        id=urlsafe_base64_decode(uidb64)
         try:
+            
+            id=urlsafe_base64_decode(uidb64)
             if not User.objects.filter(id=id).exists():
                 return Response({"message":"User of this email doesn't exist"},status=status.HTTP_404_NOT_FOUND)
             user=User.objects.get(id=id)
@@ -105,6 +113,8 @@ class CheckValidUserView(generics.GenericAPIView):
             return Response({'token':token,'uidb64':uidb64},status=status.HTTP_200_OK)
         except DjangoUnicodeDecodeError :
                 return Response({"message":"Invalid Link"},status=status.HTTP_400_BAD_REQUEST)
+        except:
+            return Response({"message":"Invalid Link"},status=status.HTTP_400_BAD_REQUEST)
 
 class ResetPassowordView(generics.GenericAPIView):
     serializer_class=ResetPasswordSerailizer
