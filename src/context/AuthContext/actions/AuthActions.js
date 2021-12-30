@@ -1,50 +1,81 @@
-import axios from "axios";
-const ROOT_URL = 'http://127.0.0.1:5000/auth/';
+import axiosInstance from "../../../utilities/axios";
 export async function loginUser(dispatch, loginPayload) {
+    console.log(loginPayload)
     const requestOptions = {
         method: 'post',
-        headers: { 'Content-Type': 'application/json' },
         data: loginPayload
     };
     try {
+        if (localStorage.getItem('currentUser')) {
+            localStorage.removeItem('currentUser');
+        }
         dispatch({ type: 'REQUEST_LOGIN' });
-        let response = await axios({
-            url: `${ROOT_URL}login/`
+        let response = await axiosInstance('')({
+            url: `auth/login/`
             ,
             ...requestOptions
         });
         console.log(response)
         let data = response.data;
-        if (data.email) {
-            dispatch({ type: 'LOGIN_SUCCESS', payload: data });
-            localStorage.setItem('currentUser', JSON.stringify(data));
-            return data
+        if (data.data.email) {
+            dispatch({ type: 'LOGIN_SUCCESS', payload: data.data });
+            localStorage.setItem('currentUser', JSON.stringify(data.data));
+            localStorage.setItem('expires_in', JSON.stringify(data.expires))
+            return data.data
         }
 
-        dispatch({ type: 'LOGIN_ERROR', error: data.errors[0] });
+        // dispatch({ type: 'LOGIN_ERROR', error: data.errors[0] });
         return
     } catch (error) {
-        dispatch({ type: 'LOGIN_ERROR', error: error.response.data.message });
+        if (error.response.statusText === 'Unauthorized') {
+            localStorage.removeItem('currentUser')
+            localStorage.removeItem('expires_in')
+            dispatch({ type: 'UNAUTHORIZED' })
+
+        }
+        //dispatch({ type: 'LOGIN_ERROR', error: error.response.data.message });
         return error.response.data.message
     }
 }
 
 export function logout(dispatch) {
 
-    const requestOptions = {
-        method: "get",
-        headers: { 'Authorization': JSON.parse(localStorage.getItem('currentUser')).token }
-    }
-    axios({
-        url: `http://127.0.0.1:5000/auth/logout/`
+    axiosInstance('Token ' + JSON.parse(localStorage.getItem('currentUser')).token)({
+        url: `auth/logout/`
         ,
-        ...requestOptions
+        method: 'get'
     }).then(data => {
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('expires_in')
+
         dispatch({ type: 'LOGOUT' })
         return data
     }
-    ).catch(error => dispatch({ type: 'LOGIN_ERROR', error: error.response.data }));
+    ).catch(error => {
+        console.log(error.response)
+        if (error.response.statusText === 'Unauthorized') {
+            localStorage.removeItem('currentUser')
+            localStorage.removeItem('expires_in')
+            dispatch({ type: 'UNAUTHORIZED' })
+
+        }
+        dispatch({ type: 'LOGIN_ERROR', error: error.response.data })
+    });
 
 
 }
+
+// export function invalidToken(dispatch) {
+//     axiosInstance({
+//         url: `auth/valid-login/`
+//         ,
+//         method: 'get',
+
+//         headers: { 'Authorization': localStorage.getItem('currentUser') ? 'Token ' + JSON.parse(localStorage.getItem('currentUser')).token : '' }
+
+//     }).then(response => response).catch(err => {
+//         localStorage.removeItem('currentUser')
+//         dispatch({ type: 'INVAILD_TOKEN' })
+//     }
+//     )
+//}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
 import Logo from "../resource/Logo.png";
@@ -6,16 +6,26 @@ import { useAuthState, useAuthDispatch, logout } from '../context/AuthContext/Au
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(() => true)
+  const dispatch = useAuthDispatch()
   const [start, setStart] = useState(() => true)
   const { token } = useAuthState()
-  const dispatch = useAuthDispatch()
+  useEffect(() => {
+    if (localStorage.getItem('expires_in') && !(localStorage.getItem('expires_in') - Math.floor(Date.now() / 1000) >= 0) && Boolean(token)) {
+      logout(dispatch);
+    }
+  }
+    , [dispatch, token])
+
   const handleNavbar = () => {
     setNavbar(!navbar)
     setStart(false)
   }
+
   const handleLogout = () => {
+
     logout(dispatch);
   }
+
   return (
     <div className={navbar ? "Navbar" : "Navbar Toggled"}>
       <MenuIcon className="makeItColor Toggle" onClick={() => handleNavbar()} />
@@ -33,7 +43,7 @@ const Navbar = () => {
           Dashboard
         </Link>
       </div>
-      {token ?
+      {Boolean(token) ?
         <span onClick={handleLogout} className="makeItColor right">
           Logout
         </span> :

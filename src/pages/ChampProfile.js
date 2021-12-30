@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../utilities/axios";
 import { Skeleton } from "@material-ui/lab";
 const ChampProfile = (props) => {
   let { id } = useParams();
@@ -8,7 +8,7 @@ const ChampProfile = (props) => {
   let [version, setVersion] = useState("");
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:5000/api/certainChamption/${id}`).then(function ({ data }) {
+    axiosInstance((localStorage.getItem('currentUser') && 'Token ' + JSON.parse(localStorage.getItem('currentUser')).token) || '').get(`api/certainChamption/${id}`).then(function ({ data }) {
       setChampdata(data.data[`${id}`])
       setVersion(data.version)
     }).catch(err => console.log(err.message))

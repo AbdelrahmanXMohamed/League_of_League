@@ -851,3 +851,19 @@
     }
   }
 }
+.CheckResetPassword {
+  display: grid;
+  height: $HeightOfPageWithNavbar;
+  place-items: center;
+  .error {
+    background-color: rgba($color: red, $alpha: 0.5);
+  }
+  .loading {
+    background-color: rgba($color: grey, $alpha: 0.5);
+  }
+  .center {
+    font-size: 2rem;
+    text-align: center;
+    padding: 1em;
+  }
+}

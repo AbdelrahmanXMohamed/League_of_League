@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import axios from 'axios'
+import axiosInstance from '../utilities/axios'
 import toast, { Toaster } from "react-hot-toast";
 
 const ForgetPassword = () => {
@@ -9,8 +9,8 @@ const ForgetPassword = () => {
 
   const onSubmit = async (data) => {
     const checking = toast.loading('Checking...')
-    let response = await axios({
-      url: "http://127.0.0.1:5000/auth/forget-password/",
+    let response = await axiosInstance('')({
+      url: "auth/forget-password/",
       method: "post",
       data
     })

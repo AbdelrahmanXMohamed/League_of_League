@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
-import axios from "axios";
+import axiosInstance from "../utilities/axios";
 import UserCard from '../components/UserCard';
 import Loading from "../components/Loading";
 import Tilt from 'react-tilt'
@@ -12,8 +12,8 @@ export default function PopUp({ Chamption, handlePopUp }) {
 
 
     useEffect(() => {
-        axios({
-            url: `http://127.0.0.1:5000/api/dataOfCertainUser/${Chamption.current.value}`,
+        axiosInstance((localStorage.getItem('currentUser') && 'Token ' + JSON.parse(localStorage.getItem('currentUser')).token) || '')({
+            url: `api/dataOfCertainUser/${Chamption.current.value}`,
             method: "get"
         })
             .then(({ data }) => {
@@ -32,8 +32,8 @@ export default function PopUp({ Chamption, handlePopUp }) {
     useEffect(() => {
         if (users.length > 0) {
             console.log(users[0].user.puuid)
-            axios({
-                url: `http://127.0.0.1:5000/api/matchesForUser/${users[0].user.puuid}`,
+            axiosInstance((localStorage.getItem('currentUser') && 'Token ' + JSON.parse(localStorage.getItem('currentUser')).token) || '')({
+                url: `api/matchesForUser/${users[0].user.puuid}`,
                 method: "get"
             })
                 .then(({ data }) => {

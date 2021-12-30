@@ -13,7 +13,7 @@ from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.utils.encoding import smart_str,force_str, smart_bytes ,DjangoUnicodeDecodeError
 from django.utils.http import  urlsafe_base64_encode,urlsafe_base64_decode
 from .authentications import token_expire_handler, expires_in
-
+import datetime;
 
 # Create your views here.
 
@@ -51,14 +51,18 @@ class LoginAPIView(generics.GenericAPIView):
     serializer_class=LoginSerailizer
 
     def post(self,request):
+        print(request.data)
         serializer=self.serializer_class(data=request.data)
         
         serializer.is_valid(raise_exception=True)
-        return Response({'data':serializer.data,'expires':expires_in(MyToken.objects.get(key=serializer.data['token']))},status=status.HTTP_200_OK)
+        date=datetime.datetime.now().timestamp()+expires_in(MyToken.objects.get(key=serializer.data['token'])).total_seconds()
+        print('success')
+        return Response({'data':serializer.data,'expires':date},status=status.HTTP_200_OK)
 
 class LogoutAPIView(generics.GenericAPIView):
     premission_classes=(IsAuthenticated,)
     def get(self,request):
+        print(request.META)
         if request.user.is_authenticated:
             request.auth.delete()
             logout(request)

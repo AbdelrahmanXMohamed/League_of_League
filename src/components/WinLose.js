@@ -9,7 +9,6 @@ export default function WinLose({ match, version }) {
             setWinLose(() => match.win ? "Win" : "Lose")
         }
     }, [match])
-    console.log(version)
     return (
         <div className={winLose}>
             <div className="Highlight">

@@ -85,6 +85,5 @@ def matches_for_user(request,puuid):
         if user_data.status_code==200:
             user_data=user_data.json()
             break
-    print(detailed_matches)
     return JsonResponse({"match":detailed_matches,"user_info":user_data,"version":current_version()},safe=False)
 

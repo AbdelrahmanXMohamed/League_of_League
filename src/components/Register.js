@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import axiosInstance from "../utilities/axios";
 import toast from 'react-hot-toast';
 
 const Register = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [error, setError] = useState(() => false)
   const fetchData = async (data) => {
-    const response = await axios({
-      url: `http://127.0.0.1:5000/auth/register/`,
+    const response = await axiosInstance({
+      url: `auth/register/`,
       method: "post",
       data
     })

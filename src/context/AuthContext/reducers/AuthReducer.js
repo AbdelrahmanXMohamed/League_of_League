@@ -7,18 +7,15 @@ let token = localStorage.getItem("currentUser")
 let email = localStorage.getItem("currentUser")
     ? JSON.parse(localStorage.getItem("currentUser")).email
     : "";
-
-
 export const initialState = {
     userDetails: "" || user,
     token: "" || token,
     loading: false,
     errorMessage: null,
-    email: "" || email
+    email: "" || email,
 };
 
 export const AuthReducer = (initialState, action) => {
-    console.log(action, initialState)
     switch (action.type) {
         case "REQUEST_LOGIN":
             return {
@@ -40,13 +37,21 @@ export const AuthReducer = (initialState, action) => {
                 token: ""
             };
 
+
         case "LOGIN_ERROR":
             return {
                 ...initialState,
                 loading: false,
                 errorMessage: action.error
             };
-
+        case "UNAUTHORIZED":
+            return {
+                userDetails: "",
+                token: "",
+                loading: false,
+                errorMessage: null,
+                email: ""
+            }
         default:
             throw new Error(`Unhandled action type: ${action.type}`);
     }

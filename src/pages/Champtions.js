@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import ChamptionsCard from "../components/ChamptionsCard";
 import Loading from "../components/Loading";
-import axios from 'axios';
+import axiosInstance from '../utilities/axios';
 
 const Champtions = () => {
   let [champdata, setChampdata] = useState(() => []);
   useEffect(() => {
-    axios.get("http://127.0.0.1:5000/api/currentChampions").then(
+    axiosInstance((localStorage.getItem('currentUser') && 'Token ' + JSON.parse(localStorage.getItem('currentUser')).token) || '').get("api/currentChampions").then(
       function ({ data }) {
         let champtions = []
         Object.keys(data.data).map(function (key) {
