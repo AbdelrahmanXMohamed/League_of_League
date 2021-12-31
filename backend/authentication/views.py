@@ -56,13 +56,11 @@ class LoginAPIView(generics.GenericAPIView):
         
         serializer.is_valid(raise_exception=True)
         date=datetime.datetime.now().timestamp()+expires_in(MyToken.objects.get(key=serializer.data['token'])).total_seconds()
-        print('success')
         return Response({'data':serializer.data,'expires':date},status=status.HTTP_200_OK)
 
 class LogoutAPIView(generics.GenericAPIView):
     premission_classes=(IsAuthenticated,)
     def get(self,request):
-        print(request.META)
         if request.user.is_authenticated:
             request.auth.delete()
             logout(request)

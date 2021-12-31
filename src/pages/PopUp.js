@@ -29,20 +29,20 @@ export default function PopUp({ Chamption, handlePopUp }) {
 
         return () => console.log("unmounted")
     }, [Chamption])
-    useEffect(() => {
-        if (users.length > 0) {
-            console.log(users[0].user.puuid)
-            axiosInstance((localStorage.getItem('currentUser') && 'Token ' + JSON.parse(localStorage.getItem('currentUser')).token) || '')({
-                url: `api/matchesForUser/${users[0].user.puuid}`,
-                method: "get"
-            })
-                .then(({ data }) => {
-                    console.log(data)
-                })
-                .catch(err => console.log(err))
-        }
-        else { console.log("Loading") }
-    }, [users])
+    // useEffect(() => {
+    //     if (users.length > 0) {
+    //         console.log(users[0].user.puuid)
+    //         axiosInstance((localStorage.getItem('currentUser') && 'Token ' + JSON.parse(localStorage.getItem('currentUser')).token) || '')({
+    //             url: `api/matchesForUser/${users[0].user.puuid}`,
+    //             method: "get"
+    //         })
+    //             .then(({ data }) => {
+    //                 console.log(data)
+    //             })
+    //             .catch(err => console.log(err))
+    //     }
+    //     else { console.log("Loading") }
+    // }, [users])
     console.log(users)
     return (
         <>
