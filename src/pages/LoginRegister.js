@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 import Register from '../components/Register';
 import Login from "../components/Login"
 import { Toaster } from 'react-hot-toast';
+import { useAuthState } from '../context/AuthContext/AuthContext';
 
 export default function LoginRegister(props) {
     let history = useHistory();
-
+    const { token } = useAuthState()
     history.location.pathname.replace("/", "")
     const [currentForm, setCurrentForm] = useState(() => history.location.pathname.replace("/", ""))
     useEffect(() => {
         setCurrentForm(() => history.location.pathname.replace("/", ""));
     }, [history.location.pathname])
-
+    if (Boolean(token))
+        return <Redirect to="/" />
     return (
         <>
+            ?
 
             <Toaster position="top-center" />
 

@@ -1,11 +1,11 @@
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.db import models
 from rest_framework import serializers
 from rest_framework.exceptions import AuthenticationFailed
 from .models import User
 from django.contrib import auth
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str
+
 class RegisterSerailizer(serializers.ModelSerializer):
     password=serializers.CharField(max_length=68,min_length=6,write_only=True)
     class Meta:

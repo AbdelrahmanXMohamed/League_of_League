@@ -36,6 +36,9 @@
 //     monospace;
 // }
 
+a {
+  text-decoration: none;
+}
 .Navbar {
   display: flex;
   align-items: center;
@@ -348,6 +351,9 @@
 
     img {
       width: 50%;
+      @media (max-width: 550px) {
+        width: 75%;
+      }
     }
     .SearchBorder {
       text-align: center;
@@ -662,6 +668,9 @@
       h3 {
         font-family: Arcane;
       }
+      .Favorite {
+        color: $CommonColor1;
+      }
     }
   }
 }
@@ -866,4 +875,9 @@
     text-align: center;
     padding: 1em;
   }
+}
+.Favorite {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }

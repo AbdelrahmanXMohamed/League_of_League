@@ -15,7 +15,6 @@ export async function loginUser(dispatch, loginPayload) {
             ,
             ...requestOptions
         });
-        console.log(response)
         let data = response.data;
         if (data.data.email) {
             dispatch({ type: 'LOGIN_SUCCESS', payload: data.data });
@@ -52,7 +51,6 @@ export function logout(dispatch) {
         return data
     }
     ).catch(error => {
-        console.log(error.response)
         if (error.response.statusText === 'Unauthorized') {
             localStorage.removeItem('currentUser')
             localStorage.removeItem('expires_in')

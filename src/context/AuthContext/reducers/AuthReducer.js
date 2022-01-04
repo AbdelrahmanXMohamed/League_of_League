@@ -34,7 +34,8 @@ export const AuthReducer = (initialState, action) => {
             return {
                 ...initialState,
                 user: "",
-                token: ""
+                token: "",
+                email: ""
             };
 
 

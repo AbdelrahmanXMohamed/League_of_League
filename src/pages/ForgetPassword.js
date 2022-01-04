@@ -1,22 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axiosInstance from '../utilities/axios'
 import toast, { Toaster } from "react-hot-toast";
-
+import { useAuthState } from "../context/AuthContext/AuthContext";
 const ForgetPassword = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm()
-
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { token } = useAuthState();
   const onSubmit = async (data) => {
-    const checking = toast.loading('Checking...')
+    const checking = toast.loading('Checking...');
     let response = await axiosInstance('')({
       url: "auth/forget-password/",
       method: "post",
       data
     })
-    if (response.status === 200) { toast.dismiss(checking); toast.success(response.data.message) }
-    else { toast.dismiss(checking); toast.error(response.data.message) }
+    if (response.status === 200) { toast.dismiss(checking); toast.success(response.data.message); }
+    else { toast.dismiss(checking); toast.error(response.data.message); }
   };
+  if (Boolean(token))
+    return <Redirect to="/" />
 
   return (
     <>

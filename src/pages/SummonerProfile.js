@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../utilities/axios";
 import { Skeleton } from "@material-ui/lab";
+import { Favorite, FavoriteBorder } from "@material-ui/icons";
+
 import WinLose from "../components/WinLose";
 const SummonerProfile = (props) => {
     let { puuid } = useParams();
@@ -9,21 +11,29 @@ const SummonerProfile = (props) => {
     let [matchesdata, setMatchesdata] = useState([null, null, null, null, null]);
     let [version, setVersion] = useState("");
     let [user, setUser] = useState(null);
-
+    let [favorite, setFavorite] = useState(() => false)
     useEffect(() => {
-        axios({
-            url: `http://127.0.0.1:5000/api/matchesForUser/${puuid}`,
-            method: "get"
-        })
-            .then(({ data }) => {
+        axiosInstance((localStorage.getItem('currentUser') && 'Token ' + JSON.parse(localStorage.getItem('currentUser')).token) || '')
+            ({
+                url: `api/matchesForUser/${puuid}`,
+                method: "get"
+            }).then(({ data }) => {
                 setVersion(() => data.version)
                 setUser(() => data.user_info)
                 setMatchesdata(() => data.match)
-
+                setFavorite(() => data.favorite)
             })
             .catch(err => console.log(err))
 
     }, [puuid])
+    const addFavorite = () => {
+        axiosInstance((localStorage.getItem('currentUser') && 'Token ' + JSON.parse(localStorage.getItem('currentUser')).token) || '')
+            ({
+                url: `api/favorite`,
+                method: "put",
+                data: { "UUID": puuid }
+            }).then(data => setFavorite(() => setFavorite(() => !favorite)))
+    }
     return (
         <>
             <div className="SummonerProfile">
@@ -43,18 +53,23 @@ const SummonerProfile = (props) => {
                     </div>
                     <center className="Name">
                         {Boolean(user) ? (
-                            <h3>{user.name}</h3>
-                        ) : (
+                            <>
+                                <h3>{user.name} </h3>
+                                <div className='Favorite'>
+                                    {favorite ? <Favorite onClick={addFavorite} /> : <FavoriteBorder onClick={addFavorite} />}
+                                </div></>) : (
                             <>
                                 <Skeleton animation="wave" variant="text" />
-                            </>
+                                <div className='Favorite'>
+                                    {favorite ? <Favorite /> : <FavoriteBorder />}
+                                </div>     </>
                         )}
                     </center>
 
                 </div>
                 <div className="WinLose">
 
-                    {matchesdata.map((match, index) => <WinLose key={index} match={match} version={version} />)}
+                    {matchesdata.length > 0 ? matchesdata.map((match, index) => <WinLose key={index} match={match} version={version} />) : <h3>No matches found</h3>}
 
                 </div>
 

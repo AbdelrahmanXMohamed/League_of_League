@@ -7,7 +7,7 @@ import SummonerProfile from "./pages/SummonerProfile";
 import LoginRegister from "./pages/LoginRegister";
 import CheckResetPassword from "./pages/CheckResetPassword";
 // import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
+import Favorite from "./pages/Favorite";
 import ForgetPassword from "./pages/ForgetPassword";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./style/styles.css"
@@ -52,8 +52,8 @@ function App() {
             <Route path="/forget_password">
               <ForgetPassword />
             </Route>
-            <Route path="/dashboard">
-              <Dashboard />
+            <Route path="/favorite">
+              <Favorite />
             </Route>
             <Route path="/check_reset_password/:uidb64/:token">
               <CheckResetPassword />

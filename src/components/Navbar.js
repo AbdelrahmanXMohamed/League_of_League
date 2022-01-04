@@ -39,8 +39,8 @@ const Navbar = () => {
         <Link className="makeItColor" to="/champtions">
           Champtions
         </Link>
-        <Link className="makeItColor" to="/dashboard">
-          Dashboard
+        <Link className="makeItColor" to="/favorite">
+          Favorite
         </Link>
       </div>
       {Boolean(token) ?

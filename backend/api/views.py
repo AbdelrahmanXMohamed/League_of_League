@@ -1,19 +1,17 @@
-import re
+from django.http.response import Http404
 from django.shortcuts import render
 from django.http import JsonResponse
 import requests
 from  .config import api_key
-from .models import UUID
-from .utils import remove_fields
+from .models import UUID,Favorite
+from .utils import remove_fields,current_version
+from rest_framework import generics,status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from .serializers import FavoriteSerializer
+
 # Create your views here.
-
-def test(request):
-    r = requests.get(f'https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/xbenx99?api_key={api_key}')
-    return JsonResponse({"massage": "hello world" },safe=False)
-
-def current_version():
-    r=requests.get("https://ddragon.leagueoflegends.com/api/versions.json")
-    return r.json()[0]
 
 def current_champtions(request):
     r=requests.get(f'http://ddragon.leagueoflegends.com/cdn/{current_version()}/data/en_US/champion.json')
@@ -30,21 +28,18 @@ def data_for_user(request,user):
     for platform in platforms:
         user_data = requests.get(f'https://{platform.lower()}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{user}?api_key={api_key}')
         if user_data.status_code == 200:
-            try:
-                UUID.objects.get(UUID=user_data.json()["puuid"])
-            except:
-                UUID.objects.create(UUID=user_data.json()["puuid"])
+            UUID.objects.get_or_create(UUID=user_data.json()["puuid"],Platform=platform)
             result_user.append({"user":user_data.json(),"platform":platform})     
     if len(result_user)==0:
         return JsonResponse({"users": result_user,"version":current_version(),"message":"No user found"},safe=False)
-           # match=requests.get(f"https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{user.json()['puuid']}/ids?start=0&count=100&api_key={api_key}")
-    '''"match":match.json()'''
     return JsonResponse({"users": result_user,"version":current_version()},safe=False)
 
+@api_view(['GET'])
 def matches_for_user(request,puuid):
 
+    print(request)
     regions=["AMERICAS","ASIA","EUROPE"]
-    platforms=["BR1","EUN1","EUW1","JP1","KR","LA1","LA2","NA1","OC1","TR1","RU"]
+    platform=UUID.objects.get(UUID=puuid)
 
     user_region,user_data="",""
     matches=[]
@@ -80,10 +75,53 @@ def matches_for_user(request,puuid):
         "assists",
         "quadraKills"]
         detailed_matches.append(remove_fields(match.json()["info"]['participants'][user_index],wantedkey))
-    for platform in platforms:
-        user_data=requests.get(f"https://{platform.lower()}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{puuid}?api_key={api_key}")
-        if user_data.status_code==200:
-            user_data=user_data.json()
-            break
-    return JsonResponse({"match":detailed_matches,"user_info":user_data,"version":current_version()},safe=False)
+    
+    user_data=requests.get(f"https://{platform.Platform.lower()}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{puuid}?api_key={api_key}").json()
+    if request.user.is_authenticated:
+        print(Favorite.objects.filter(User=request.user,FavoriteUUID=platform).exists())
+        if Favorite.objects.filter(User=request.user,FavoriteUUID=platform).exists():
+            return JsonResponse({"match":detailed_matches,'favorite':True,"user_info":user_data,"version":current_version()},safe=False)
+    return JsonResponse({"match":detailed_matches,'favorite':False,"user_info":user_data,"version":current_version()},safe=False)
 
+class FavoriteAPIView(generics.GenericAPIView):
+    premission_classes=[IsAuthenticated]
+    serializer_class=FavoriteSerializer
+    def get_object(self,user):
+        try:
+            if user.is_authenticated:
+                return Favorite.objects.get(User=user)
+            return Http404
+        except:
+            return Favorite.objects.create(User=user)        
+    
+    def get(self,request):
+        result_user=[]
+        data=self.get_object(request.user)
+        serializer=self.serializer_class(data)
+        if not serializer.data:
+            return Response({"message":'No data found'},status=status.HTTP_400_BAD_REQUEST)
+        for favorite in serializer.data['FavoriteUUID']:
+            user_data=requests.get(f"https://{favorite['Platform'].lower()}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{favorite['UUID']}?api_key={api_key}")
+            if user_data.status_code == 200:
+                user_data=user_data.json()
+                user_data['status']='Success'
+            else:
+                user_data=user_data.json()
+                user_data['status']='Fail'
+            user_data['version']=current_version()
+            user_data['platform']=favorite['Platform']
+            result_user.append(user_data)    
+        return Response({'data':result_user},status=status.HTTP_200_OK)
+    
+    def put(self,request):
+        data= self.get_object(request.user)
+        id=UUID.objects.get(UUID=request.data["UUID"])
+        if not Favorite.objects.filter(User=request.user,FavoriteUUID=id).exists():   
+            data=data.FavoriteUUID.add(id)
+            return Response({"message":"Added Successfully"},status=status.HTTP_200_OK)
+        data=data.FavoriteUUID.remove(id)
+        return Response({"message":"Removed Successfully"},status=status.HTTP_200_OK)
+
+# def add_favorite(request,puuid):
+    
+#     pass
