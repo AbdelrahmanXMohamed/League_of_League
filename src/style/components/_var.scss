@@ -94,3 +94,22 @@ $HeightOfPageWithoutNavbar: calc(100vh - 4.6875em);
     transform: scale(1);
   }
 }
+@keyframes skelaton {
+  0% {
+    transform: translateX(0%);
+  }
+  60% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes change {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
+}

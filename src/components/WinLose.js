@@ -12,7 +12,7 @@ export default function WinLose({ match, version }) {
     return (
         <div className={winLose}>
             <div className="Highlight">
-                <span className="Char">{winLose !== "Loading" ? winLose[0] : <Skeleton animation="wave" variant="rect" className="Skelaton-Char" />}</span>
+                <span className="Char">{winLose !== "Loading" ? winLose[0] : <Skeleton animation="wave" variant="circle" className="Skelaton-Char" />}</span>
             </div>
             <div className="Data">
 

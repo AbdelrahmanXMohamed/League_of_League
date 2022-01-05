@@ -60,8 +60,7 @@ const SummonerProfile = (props) => {
                                 </div></>) : (
                             <>
                                 <Skeleton animation="wave" variant="text" />
-                                <div className='Favorite'>
-                                    {favorite ? <Favorite /> : <FavoriteBorder />}
+                                <div className='FavoriteLoading'>
                                 </div>     </>
                         )}
                     </center>
