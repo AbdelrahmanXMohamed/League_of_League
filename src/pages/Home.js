@@ -1,16 +1,17 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import logo from "../resource/Logo.png";
 import PopUp from "./PopUp";
+import { useForm } from "react-hook-form";
 const Home = () => {
-  const Chamption = useRef(null)
+  const [Chamption, setChamption] = useState()
+  const { handleSubmit, register } = useForm()
   const [popUp, setPopUp] = useState(false)
   const handlePopUp = () => {
     setPopUp(!popUp)
   }
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const Submit = (data) => {
+    setChamption(() => data.Chamption)
     handlePopUp();
-
   }
   return (
     <>
@@ -18,11 +19,11 @@ const Home = () => {
         <div className="Top">
           <img src={logo} alt="logo" />
           <div className="SearchBorder">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(Submit)}>
               <input
                 placeholder="Chamption Name"
                 type="text"
-                ref={Chamption}
+                {...register("Chamption")}
                 className="Search"
               />
             </form>

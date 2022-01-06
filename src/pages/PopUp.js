@@ -4,6 +4,7 @@ import axiosInstance from "../utilities/axios";
 import UserCard from '../components/UserCard';
 import Loading from "../components/Loading";
 import Tilt from 'react-tilt'
+import NotFound from '../resource/df3b5390-341f-4f3f-a868-d44fc116c2ad.png'
 
 export default function PopUp({ Chamption, handlePopUp }) {
     const [users, setUsers] = useState([])
@@ -13,7 +14,7 @@ export default function PopUp({ Chamption, handlePopUp }) {
 
     useEffect(() => {
         axiosInstance((localStorage.getItem('currentUser') && 'Token ' + JSON.parse(localStorage.getItem('currentUser')).token) || '')({
-            url: `api/dataOfCertainUser/${Chamption.current.value}`,
+            url: `api/dataOfCertainUser/${Chamption}`,
             method: "get"
         })
             .then(({ data }) => {
@@ -31,13 +32,19 @@ export default function PopUp({ Chamption, handlePopUp }) {
         <>
             <div className="PopUp">
                 <div className="Header">
-                    <h1>PopUp</h1>
+                    <h1>Result of : {Chamption}</h1>
                     <CloseIcon onClick={handlePopUp} />
                 </div>
                 {
                     users.length === 0 ?
 
-                        <>{notFound ? <center> <h3> No Users Found</h3></center> : <Loading />}</>
+                        <>{notFound ?
+                            <div className="ErrorPage">
+                                <center>
+                                    <img src={NotFound} alt="NotFound" />
+                                    <h2>{Chamption} is not found</h2>
+                                </center>
+                            </div> : <Loading />}</>
 
                         :
                         <div className="Card">

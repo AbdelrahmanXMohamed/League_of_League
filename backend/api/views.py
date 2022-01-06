@@ -22,7 +22,6 @@ def certain_chamption(request,id):
     return JsonResponse(r.json(),safe=False)
 
 def data_for_user(request,user):
-
     platforms=["BR1","EUN1","EUW1","JP1","KR","LA1","LA2","NA1","OC1","TR1","RU"]
     result_user=[]
     for platform in platforms:
@@ -39,8 +38,10 @@ def matches_for_user(request,puuid):
 
     print(request)
     regions=["AMERICAS","ASIA","EUROPE"]
-    platform=UUID.objects.get(UUID=puuid)
-
+    if UUID.objects.filter(UUID=puuid).exists():
+        platform=UUID.objects.get(UUID=puuid)
+    else:
+        return Response({'message':'Summoner not found'},status=status.HTTP_400_BAD_REQUEST)
     user_region,user_data="",""
     matches=[]
     detailed_matches=[]
@@ -122,6 +123,3 @@ class FavoriteAPIView(generics.GenericAPIView):
         data=data.FavoriteUUID.remove(id)
         return Response({"message":"Removed Successfully"},status=status.HTTP_200_OK)
 
-# def add_favorite(request,puuid):
-    
-#     pass

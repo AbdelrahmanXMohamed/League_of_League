@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axiosInstance from "../utilities/axios";
 import { Skeleton } from "@material-ui/lab";
 import { Favorite, FavoriteBorder } from "@material-ui/icons";
-
+import NotFound from '../resource/df3b5390-341f-4f3f-a868-d44fc116c2ad.png'
 import WinLose from "../components/WinLose";
 const SummonerProfile = (props) => {
     let { puuid } = useParams();
@@ -12,6 +12,7 @@ const SummonerProfile = (props) => {
     let [version, setVersion] = useState("");
     let [user, setUser] = useState(null);
     let [favorite, setFavorite] = useState(() => false)
+    let [error, setError] = useState(() => "")
     useEffect(() => {
         axiosInstance((localStorage.getItem('currentUser') && 'Token ' + JSON.parse(localStorage.getItem('currentUser')).token) || '')
             ({
@@ -23,7 +24,7 @@ const SummonerProfile = (props) => {
                 setMatchesdata(() => data.match)
                 setFavorite(() => data.favorite)
             })
-            .catch(err => console.log(err))
+            .catch(err => setError(() => err.response.data.message))
 
     }, [puuid])
     const addFavorite = () => {
@@ -37,43 +38,54 @@ const SummonerProfile = (props) => {
     return (
         <>
             <div className="SummonerProfile">
-                <div className="ProHead">
+                {Boolean(error) ?
+                    <div className="ErrorPage">
+                        <center >
+                            <img src={NotFound} alt="NotFound" />
+                            <h2>{error}</h2>
+                        </center>
+                    </div> :
 
-                    <div className="Profile">
-                        {Boolean(user) ? (
+                    <>
+                        <div className="ProHead">
 
-                            < img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${user.profileIconId}.png`} alt={`${user.name}`} />
-                        ) : (
-                            <Skeleton
-                                animation="wave"
-                                variant="circle"
-                                className="Skeleton"
-                            />
-                        )}
-                    </div>
-                    <center className="Name">
-                        {Boolean(user) ? (
-                            <>
-                                <h3>{user.name} </h3>
-                                <div className='Favorite'>
-                                    {favorite ? <Favorite onClick={addFavorite} /> : <FavoriteBorder onClick={addFavorite} />}
-                                </div></>) : (
-                            <>
-                                <Skeleton animation="wave" variant="text" />
-                                <div className='FavoriteLoading'>
-                                </div>     </>
-                        )}
-                    </center>
+                            <div className="Profile">
+                                {Boolean(user) ? (
 
-                </div>
-                <div className="WinLose">
+                                    < img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/${user.profileIconId}.png`} alt={`${user.name}`} />
+                                ) : (
+                                    <Skeleton
+                                        animation="wave"
+                                        variant="circle"
+                                        className="Skeleton"
+                                    />
+                                )}
+                            </div>
+                            <center className="Name">
+                                {Boolean(user) ? (
+                                    <>
+                                        <h3>{user.name} </h3>
+                                        <div className='Favorite'>
+                                            {favorite ? <Favorite onClick={addFavorite} /> : <FavoriteBorder onClick={addFavorite} />}
+                                        </div></>) : (
+                                    <>
+                                        <Skeleton animation="wave" variant="text" />
+                                        <div className='FavoriteLoading'>
+                                        </div>
+                                    </>
+                                )}
+                            </center>
 
-                    {matchesdata.length > 0 ? matchesdata.map((match, index) => <WinLose key={index} match={match} version={version} />) : <h3>No matches found</h3>}
+                        </div>
+                        <div className="WinLose">
 
-                </div>
+                            {matchesdata.length > 0 ? matchesdata.map((match, index) => <WinLose key={index} match={match} version={version} />) : <h3>No matches found</h3>}
+
+                        </div>
 
 
-                <br />
+                        <br /></>
+                }
             </div>
         </>
     );
