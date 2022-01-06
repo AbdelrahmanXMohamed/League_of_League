@@ -51,7 +51,6 @@ class LoginAPIView(generics.GenericAPIView):
     serializer_class=LoginSerailizer
 
     def post(self,request):
-        print(request.data)
         serializer=self.serializer_class(data=request.data)
         
         serializer.is_valid(raise_exception=True)
@@ -69,7 +68,6 @@ class LogoutAPIView(generics.GenericAPIView):
 class VerifyEmail(generics.GenericAPIView):
     def get(self,request):
         token=request.GET.get('token')
-        print(token)
         if not Verify.objects.filter(key=token).exists():
             return Response({"message":'Token does not exist'}, status=status.HTTP_400_BAD_REQUEST)
 

@@ -36,7 +36,6 @@ def data_for_user(request,user):
 @api_view(['GET'])
 def matches_for_user(request,puuid):
 
-    print(request)
     regions=["AMERICAS","ASIA","EUROPE"]
     if UUID.objects.filter(UUID=puuid).exists():
         platform=UUID.objects.get(UUID=puuid)
@@ -79,7 +78,6 @@ def matches_for_user(request,puuid):
     
     user_data=requests.get(f"https://{platform.Platform.lower()}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{puuid}?api_key={api_key}").json()
     if request.user.is_authenticated:
-        print(Favorite.objects.filter(User=request.user,FavoriteUUID=platform).exists())
         if Favorite.objects.filter(User=request.user,FavoriteUUID=platform).exists():
             return JsonResponse({"match":detailed_matches,'favorite':True,"user_info":user_data,"version":current_version()},safe=False)
     return JsonResponse({"match":detailed_matches,'favorite':False,"user_info":user_data,"version":current_version()},safe=False)
